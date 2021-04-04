@@ -3,24 +3,18 @@ package src.Controler;
 
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 
 import com.example.oneconomy.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import src.librariesExternal.FireBase.Utils;
 
@@ -34,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_activity);
 
 
     }
@@ -42,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_activity);
     }
 
     public void Prueba(View view) {
@@ -53,7 +47,17 @@ public class MainActivity extends AppCompatActivity {
         EditText password = (EditText)findViewById(R.id.password);
         String passwordString = String.valueOf(password.getText());
 
-        signIn(emailString,passwordString);
+        //que string nulos no son admitidos;
+        if(emailString.isEmpty() || passwordString.isEmpty() )
+        {
+            Context context = this;
+            Toast.makeText(context, "Authentication failed - Campos Vacios.",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            signIn(emailString,passwordString);
+        }
 
     }
 
@@ -64,14 +68,11 @@ public class MainActivity extends AppCompatActivity {
 //        if (!validateForm()) {
 //            return;
 //        }
-
         Context context = this;
 //        showProgressBar();
 
 
         Utils.SignIn(mAuth,email,password,context);
-
-
     }
 
 

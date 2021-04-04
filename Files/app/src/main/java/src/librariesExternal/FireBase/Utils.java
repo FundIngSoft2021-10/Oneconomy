@@ -36,8 +36,9 @@ public class Utils {
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             //se muestra mensaje de SUCESS
-                            Toast.makeText(context, "Authentication - sign in migsucess.",
+                            Toast.makeText(context, "Authentication - sign in sucess.",
                                     Toast.LENGTH_SHORT).show();
+
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
