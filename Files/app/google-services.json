@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "738005225843",
+    "project_id": "oneconomy-drama-queens",
+    "storage_bucket": "oneconomy-drama-queens.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738005225843:android:f862662822ec7c39693506",
+        "android_client_info": {
+          "package_name": "com.example.oneconomy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738005225843-omg4vg702t9c207qpe7oitb0lqcjgsej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO-Y8Ye2Ot-qLlODYu9gaJ-IKcSr879a4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738005225843-omg4vg702t9c207qpe7oitb0lqcjgsej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
