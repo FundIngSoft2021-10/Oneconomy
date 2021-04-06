@@ -3,8 +3,6 @@ package src.Controler;
 
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,11 +10,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-import src.librariesExternal.FireBase.Utils;
+import src.Libraries.FireBase.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        conection.CONN();
+
+
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.login_activity);
 
