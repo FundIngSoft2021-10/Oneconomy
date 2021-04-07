@@ -28,36 +28,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/io.*'
-        exclude 'META-INF/INDEX.*'
-        exclude("META-INF/*.kotlin_module")
-    }
 }
 
 dependencies {
-
-    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
-    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.23'
-
-
-    //para la base de datos en google cloud
-    //implementation 'com.google.cloud.sql:mysql-socket-factory:1.0.14'
-   // implementation 'com.google.cloud.sql:mysql-socket-factory-connector-j-8:1.2.1'
-
-
-    implementation  group: 'com.google.cloud', name: 'google-cloud-storage', version: '0.9.3-beta'
-
-
 
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:26.8.0')
@@ -81,4 +54,3 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
-
