@@ -1,20 +1,16 @@
 package src.Controler;
 
 
-
-
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
-
 import src.Libraries.FireBase.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,14 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        
-
-
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.login_activity);
-
-
     }
 
     @Override
@@ -45,26 +35,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void Prueba(View view) {
 
-        EditText email = (EditText)findViewById(R.id.Email);
+        EditText email = (EditText) findViewById(R.id.Email);
         String emailString = String.valueOf(email.getText());
 
-        EditText password = (EditText)findViewById(R.id.password);
+        EditText password = (EditText) findViewById(R.id.password);
         String passwordString = String.valueOf(password.getText());
 
         //que string nulos no son admitidos;
-        if(emailString.isEmpty() || passwordString.isEmpty() )
-        {
+        if (emailString.isEmpty() || passwordString.isEmpty()) {
             Context context = this;
             Toast.makeText(context, "Authentication failed - Campos Vacios.",
                     Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            signIn(emailString,passwordString);
+        } else {
+            signIn(emailString, passwordString);
         }
 
     }
 
+    public void CrearCuenta(View view) {
+
+        Intent i = new Intent(this, CrearCuenta.class);
+        startActivity(i);
+    }
 
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
@@ -76,11 +68,8 @@ public class MainActivity extends AppCompatActivity {
 //        showProgressBar();
 
 
-        Utils.SignIn(mAuth,email,password,context);
+        Utils.SignIn(mAuth, email, password, context);
     }
-
-
-
 
 
 }

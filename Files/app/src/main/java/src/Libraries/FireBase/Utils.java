@@ -52,4 +52,31 @@ public class Utils {
                     }
                 });
     }
+
+    public static void SignUp(FirebaseAuth mAuth, String email, String password, Context context) {
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            //se muestra mensaje de SUCESS
+                            Toast.makeText(context, "Registration - sign up sucess.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            // If sign up fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+
+
+                            //CrearCuenta.verificarCodigoError(task, context);
+                            Toast.makeText(context, task.getException().getMessage() , Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+
 }
