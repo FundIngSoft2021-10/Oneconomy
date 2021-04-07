@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        conection.CONN();
+        
 
 
         mAuth = FirebaseAuth.getInstance();
