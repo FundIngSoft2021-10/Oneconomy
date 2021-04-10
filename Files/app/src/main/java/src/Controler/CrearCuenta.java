@@ -12,6 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
 import static src.Libraries.FireBase.Utils.SignUp;
 
 public class CrearCuenta extends AppCompatActivity {
@@ -64,7 +74,7 @@ public class CrearCuenta extends AppCompatActivity {
         setContentView(R.layout.signin_activity);
     }
 
-    public void crearCuenta(View view) {
+    public void crearCuenta(View view) throws IOException {
 
         boolean error = false;
 
@@ -104,22 +114,56 @@ public class CrearCuenta extends AppCompatActivity {
 
     }
 
-    private void guardarCuenta(String contrasena, String correo, String nombre) {
+    private void guardarCuenta(String contrasena, String correo, String nombre) throws IOException {
 
         String TAG = "displayname";
+
         Context context = this;
 
         System.out.println(contrasena);
         System.out.println(correo);
         System.out.println(nombre);
         SignUp(mAuth, correo, contrasena, context);
-        System.out.println("2");
-
-        /*
-        SQL
-        */
 
 
+        Thread thread = new Thread(() -> {
+            try  {
+
+                String link = "https://striped-weaver-309814.ue.r.appspot.com/";
+
+                URL url = new URL(link);
+
+                //String data  = URLEncoder.encode("username", "UTF-8")+ "=" + URLEncoder.encode(username, "UTF-8");
+                //data += "&" + URLEncoder.encode("password", "UTF-8")+ "=" + URLEncoder.encode(password, "UTF-8");
+
+                URLConnection conn = url.openConnection();
+                System.out.println("URLConnection");
+
+                //OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                //wr.write( data );
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                System.out.println("BufferedReader");
+
+                String line;
+
+                StringBuilder sb = new StringBuilder();
+
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                }
+
+                System.out.println(sb);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
     }
+
+
 
 }
