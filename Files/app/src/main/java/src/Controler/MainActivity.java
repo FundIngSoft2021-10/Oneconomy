@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void RecuperarContrasena(View view){
+        Intent i = new Intent(this, RecuperarContrasena.class);
+        startActivity(i);
+    }
+
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
 
