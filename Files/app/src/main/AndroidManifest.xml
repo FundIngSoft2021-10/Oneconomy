@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oneconomy">
-        <activity
-            android:name="src.Controler.MainActivity">
+        <activity android:name="src.Controler.RecuperarContrasena"></activity>
+        <activity android:name="src.Controler.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

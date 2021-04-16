@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
+
 import src.Libraries.FireBase.Utils;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //eliminar focus de primer texto mediante la siguiente linea
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
@@ -55,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
     public void CrearCuenta(View view) {
 
         Intent i = new Intent(this, CrearCuenta.class);
+        startActivity(i);
+    }
+
+    public void RecuperarContrasena(View view){
+        Intent i = new Intent(this, RecuperarContrasena.class);
         startActivity(i);
     }
 
