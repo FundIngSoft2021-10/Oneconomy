@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         //eliminar focus de primer texto mediante la siguiente linea
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        
+
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
