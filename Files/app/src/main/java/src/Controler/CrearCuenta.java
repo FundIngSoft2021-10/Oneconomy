@@ -1,8 +1,11 @@
 package src.Controler;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,22 +15,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 import static src.Libraries.FireBase.Utils.SignUp;
+
+
+
+
 
 public class CrearCuenta extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
 
     /*
     public static void verificarCodigoError(Task<AuthResult> task, Context context) {
@@ -63,6 +70,7 @@ public class CrearCuenta extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.signin_activity);
@@ -75,6 +83,8 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
     public void crearCuenta(View view) throws IOException {
+
+
 
         boolean error = false;
 
@@ -91,6 +101,7 @@ public class CrearCuenta extends AppCompatActivity {
 
         EditText correo = (EditText) findViewById(R.id.campocorreo);
         String correoString = String.valueOf(correo.getText());
+
 
 
         if (contrasenaString.compareTo(contrasena2String) != 0) {
@@ -125,45 +136,73 @@ public class CrearCuenta extends AppCompatActivity {
         System.out.println(nombre);
         SignUp(mAuth, correo, contrasena, context);
 
+        new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
 
-        Thread thread = new Thread(() -> {
-            try  {
-
-                String link = "https://striped-weaver-309814.ue.r.appspot.com/";
-
-                URL url = new URL(link);
-
-                //String data  = URLEncoder.encode("username", "UTF-8")+ "=" + URLEncoder.encode(username, "UTF-8");
-                //data += "&" + URLEncoder.encode("password", "UTF-8")+ "=" + URLEncoder.encode(password, "UTF-8");
-
-                URLConnection conn = url.openConnection();
-                System.out.println("URLConnection");
-
-                //OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                //wr.write( data );
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                System.out.println("BufferedReader");
-
-                String line;
-
-                StringBuilder sb = new StringBuilder();
-
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                }
-
-                System.out.println(sb);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-
-        thread.start();
     }
 
+    private class JsonTask extends AsyncTask<String, String, JSONObject> {
 
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected JSONObject doInBackground(String... params) {
+
+
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+
+                InputStream stream = connection.getInputStream();
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line+"\n");
+                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+
+                }
+
+                return new JSONObject(buffer.toString());
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject response) {
+            if(response != null)
+            {
+                //
+            }
+        }
+    }
 
 }
+
