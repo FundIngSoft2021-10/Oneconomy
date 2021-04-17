@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Oneconomy">
         <activity android:name="src.Controler.RecuperarContrasena"></activity>
+        <activity android:name="src.Controler.ControladorArchivos">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="src.Controler.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

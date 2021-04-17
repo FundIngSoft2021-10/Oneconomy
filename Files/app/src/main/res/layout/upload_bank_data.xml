@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="src.Controler.ControladorArchivos">
+
+    <Button
+        android:id="@+id/btn_filePicker"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="202dp"
+        android:layout_height="53dp"
+        android:background="#1977CA"
+        android:text="Sube tu PDF"
+        android:textColor="#FFFFFF"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="136dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="78dp"
+        android:layout_height="71dp"
+        tools:layout_editor_absoluteX="153dp"
+        tools:layout_editor_absoluteY="221dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
