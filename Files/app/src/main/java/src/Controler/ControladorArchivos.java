@@ -13,7 +13,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 public class ControladorArchivos extends AppCompatActivity {
-    private final OkHttp Cliente = new OkHttpClient();
+    //private final OkHttp Cliente = new OkHttpClient();
 
     protected void onCreate(){
         Button btn_filePicker = (Button) findViewById(R.id.btn_filePicker);
@@ -29,8 +29,8 @@ public class ControladorArchivos extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode ==10 && requestCode ==RESULT_OK){
             String path = data.getData().getPath();
-
-            OkHttp request = new OkHttp();
+            System.out.println(path);
+            /*OkHttp request = new OkHttp();
 
             byte[] input_file = Files.readAllBytes(Paths.get(path));
             byte[] encodedBytes = Base64.getEncoder().encode(input_file);
@@ -38,11 +38,11 @@ public class ControladorArchivos extends AppCompatActivity {
             String pdfInBase64 = new String(encodedBytes);
 
             request.sendPost("file",pdfInBase64);
-            System.out.println(pdfInBase64);
+            System.out.println(pdfInBase64);*/
         }
     }
 
-    private void sendPost(String name,String data) throws Exception {
+    /*private void sendPost(String name,String data) throws Exception {
         RequestBody formBody = new FormBody.Builder()
                 .add(name,data)
                 .build();
@@ -61,5 +61,5 @@ public class ControladorArchivos extends AppCompatActivity {
             System.out.println(response.body().string());
         }
 
-    }
+    }*/
 }
