@@ -11,13 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oneconomy">
-<<<<<<< HEAD
         <activity android:name="src.Controler.Pruebas_visuales"></activity>
-=======
         <activity android:name="src.Controler.MovimientoManual"></activity>
         <activity android:name="src.Controler.Finanzas" />
         <activity android:name="src.Controler.MenuPrincipal" />
->>>>>>> debf57065bc15d1577be63a3f2514c764bc60b2c
         <activity android:name="src.Controler.RecuperarContrasena" />
         <activity android:name="src.Controler.ControladorArchivos">
             <intent-filter>

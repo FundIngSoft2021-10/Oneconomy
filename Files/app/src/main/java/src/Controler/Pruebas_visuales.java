@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.oneconomy.R;
+
 public class Pruebas_visuales extends AppCompatActivity {
 
     @Override
