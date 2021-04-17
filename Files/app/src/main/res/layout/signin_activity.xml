@@ -79,10 +79,13 @@
 
     <Button
         android:id="@+id/buttonFechaNacimiento"
-        style="@style/Widget.AppCompat.Button"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#03A9F4"
+        android:backgroundTint="#03A9F4"
+        android:backgroundTintMode="add"
         android:onClick="showDatePickerDialog"
         android:text="Fecha Nacimiento"
         android:textSize="24sp"
