@@ -5,7 +5,7 @@ const pdf2table = require('pdf2table');
 const md5 = require('md5');
 
 
-router.use(bodyParser.json())
+router.use(bodyParser.json({limit: '50mb'}));
 
 router.post("/upload", async (req, res) => {
     console.log("Recibio solicitud de subida PDF")
