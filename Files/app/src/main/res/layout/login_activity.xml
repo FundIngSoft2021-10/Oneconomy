@@ -22,14 +22,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="388dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <EditText
@@ -37,21 +37,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#03A9F4"
         android:onClick="Prueba"
@@ -66,7 +66,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#03A9F4"
         android:onClick="CrearCuenta"
         android:text="Register"
@@ -91,23 +91,26 @@
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="105dp"
         android:layout_height="101dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:background="#00FFFFFF"
         android:scaleType="fitStart"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView2"
         app:srcCompat="@drawable/google_logo" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="253dp"
-        android:layout_height="287dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[3]" />
+        app:srcCompat="@drawable/imagen"
+        tools:srcCompat="@drawable/imagen" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -123,7 +126,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#03A9F4"
         android:onClick="RecuperarContrasena"
         android:text="Recuperar"
