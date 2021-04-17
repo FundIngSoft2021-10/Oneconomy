@@ -12,6 +12,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import src.Controler.CrearCuenta;
+import src.Model.Cliente;
+
 public class Utils {
 
 
@@ -53,9 +56,11 @@ public class Utils {
                 });
     }
 
-    public static void SignUp(FirebaseAuth mAuth, String email, String password, Context context) {
+    // Retorna 0 en caso de exito, de lo contrario 1
+    public static void SignUp(FirebaseAuth mAuth, Cliente cliente, String password, Context context) {
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        AuthResult result;
+        mAuth.createUserWithEmailAndPassword(cliente.getEmail(), password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -65,6 +70,7 @@ public class Utils {
                             //se muestra mensaje de SUCESS
                             Toast.makeText(context, "Registration - sign up sucess.",
                                     Toast.LENGTH_SHORT).show();
+                            CrearCuenta.enviarPost(cliente);
 
                         } else {
                             // If sign up fails, display a message to the user.

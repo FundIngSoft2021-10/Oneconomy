@@ -52,12 +52,17 @@ public class MainActivity extends AppCompatActivity {
         //que string nulos no son admitidos;
         if (emailString.isEmpty() || passwordString.isEmpty()) {
             Context context = this;
-            Toast.makeText(context, "Authentication failed - Campos Vacios.",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Authentication failed - Campos Vacios.", Toast.LENGTH_SHORT).show();
         } else {
             signIn(emailString, passwordString);
+            MenuPrincipal(view);
         }
 
+    }
+
+    public void MenuPrincipal(View view){
+        Intent i = new Intent(this, MenuPrincipal.class);
+        startActivity(i);
     }
 
     public void CrearCuenta(View view) {

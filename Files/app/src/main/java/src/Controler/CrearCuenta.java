@@ -21,12 +21,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 import src.Libraries.DatePickerFragment;
 import src.Model.Cliente;
@@ -88,9 +90,6 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
     public void crearCuenta(View view) throws IOException {
-
-
-
         boolean error = false;
 
         CheckBox terminos = (CheckBox) findViewById(R.id.acceptoterminos);
@@ -156,7 +155,7 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
 
-        private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException {
+    private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException {
 
         String TAG = "displayname";
 
@@ -164,13 +163,9 @@ public class CrearCuenta extends AppCompatActivity {
 
         Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,null,cedulaString);
 
-            System.out.println(contrasenaString);
-        System.out.println(correoString);
-        System.out.println(nombreString);
-        SignUp(mAuth, correoString, contrasenaString, context);
+        SignUp(mAuth, cliente, correoString, context);
 
-        new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
-
+        //new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
     }
 
     public void showDatePickerDialog(View view) {
@@ -188,6 +183,45 @@ public class CrearCuenta extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
+    public static void enviarPost(Cliente nuevoCliente) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/ClienteGP");
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    JSONObject jCliente = new JSONObject();
+
+                    jCliente.put("cliente", nuevoCliente);
+
+                    Log.i("JSON", jCliente.toString());
+                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
+                    os.writeBytes(jCliente.toString());
+
+                    os.flush();
+                    os.close();
+
+                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("MSG" , conn.getResponseMessage());
+
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+    /*
 
     private class JsonTask extends AsyncTask<String, String, JSONObject> {
 
@@ -251,7 +285,7 @@ public class CrearCuenta extends AppCompatActivity {
                 //
             }
         }
-    }
+    }*/
 
 }
 
