@@ -10,7 +10,7 @@ router.use(bodyParser.json())
 router.post("/upload", async (req, res) => {
     console.log("Recibio solicitud de subida PDF")
 
-    var bin = Base64.atob(file64);
+    var bin = Base64.atob(req.body.file);
     var datetime = new Date();
 
     file_name = `extract_${md5(datetime.toUTCString())}}.pdf`
