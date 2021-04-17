@@ -8,8 +8,10 @@
 
     <EditText
         android:id="@+id/campocorreo"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:editable="false"
         android:ems="10"
         android:hint="Correo"
@@ -23,17 +25,17 @@
 
     <Button
         android:id="@+id/boton_crearcuenta"
-        android:layout_width="300dp"
-        android:layout_height="73dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="#03A9F4"
         android:onClick="enviarCorreoRecuperacion"
         android:text="Recuperar contraseña"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/campocorreo"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/campocorreo"
         app:layout_constraintTop_toBottomOf="@+id/campocorreo"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintVertical_bias="0.056" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

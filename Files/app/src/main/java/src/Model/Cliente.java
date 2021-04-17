@@ -2,7 +2,7 @@ package src.Model;
 
 import java.util.Date;
 
-public class Perfil {
+public class Cliente {
 
     //para insertar codigo alt + insert
 
@@ -13,7 +13,7 @@ public class Perfil {
     Date fecha_Nacimiento;
     String cedula;
 
-    public Perfil(String email, String nombre_Usuario, String nombre, String apellido, Date fecha_Nacimiento, String cedula) {
+    public Cliente(String email, String nombre_Usuario, String nombre, String apellido, Date fecha_Nacimiento, String cedula) {
         this.email = email;
         this.nombre_Usuario = nombre_Usuario;
         this.nombre = nombre;

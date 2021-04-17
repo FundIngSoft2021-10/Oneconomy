@@ -1,5 +1,6 @@
 package src.Controler;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +27,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import src.Libraries.DatePickerFragment;
+import src.Model.Cliente;
 
 import static src.Libraries.FireBase.Utils.SignUp;
 
@@ -90,55 +95,101 @@ public class CrearCuenta extends AppCompatActivity {
 
         CheckBox terminos = (CheckBox) findViewById(R.id.checkBox);
 
-        EditText nombre = (EditText) findViewById(R.id.camponombre);
-        String nombreString = String.valueOf(nombre.getText());
-
         EditText contrasena = (EditText) findViewById(R.id.campocontrasena);
         String contrasenaString = String.valueOf(contrasena.getText());
 
         EditText contrasena2 = (EditText) findViewById(R.id.campoconfirmarcontrasena);
         String contrasena2String = String.valueOf(contrasena2.getText());
 
+
         EditText correo = (EditText) findViewById(R.id.campocorreo);
         String correoString = String.valueOf(correo.getText());
 
+        EditText nombre_usuario = (EditText) findViewById(R.id.Nombre_usuario);
+        String nombre_usuarioString = String.valueOf(nombre_usuario.getText());
+
+        EditText nombre = (EditText) findViewById(R.id.camponombre);
+        String nombreString = String.valueOf(nombre.getText());
+
+        EditText apellido = (EditText) findViewById(R.id.Apellido);
+        String apellidoString = String.valueOf(apellido.getText());
+
+        //aqui no va esta variable que le paso al final en la sigiente linea
+        //EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
+        //String fecha_nacimientoString = String.valueOf(fecha_seleccionada.getText());
+        String fecha_nacimientoString = "";
+
+        EditText cedula = (EditText) findViewById(R.id.Cedula);
+        String cedulaString = String.valueOf(cedula.getText());
 
 
-        if (contrasenaString.compareTo(contrasena2String) != 0) {
+
+        if (contrasenaString.compareTo(contrasena2String) != 0)
+        {
             error = true;
 
         }
-        if (terminos != null) {
-            error = true;
+        else
+        {
+
+            if (terminos != null) {
+                error = true;
+            }
+            else
+            {
+                if (correoString.isEmpty() ||nombre_usuarioString.isEmpty() || nombreString.isEmpty() || apellidoString.isEmpty() || fecha_nacimientoString.isEmpty() || cedulaString.isEmpty() ) {
+                    error = true;
+                }
+                else
+                {
+                    System.out.println("Intentando Crear...");
+                    guardarCuenta(contrasenaString, correoString, nombreString,nombre_usuarioString,apellidoString,fecha_nacimientoString, cedulaString);
+               }
+            }
         }
 
-        if (error) {
-
+        if (error)
+        {
             Context context = this;
             Toast.makeText(context, "No se pudo crear la cuenta - las contraseñas no coinciden",
                     Toast.LENGTH_SHORT).show();
 
-        } else {
-            System.out.println("Intentando Crear...");
-            guardarCuenta(contrasenaString, correoString, nombreString);
         }
-
     }
 
-    private void guardarCuenta(String contrasena, String correo, String nombre) throws IOException {
+
+        private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException {
 
         String TAG = "displayname";
 
         Context context = this;
 
-        System.out.println(contrasena);
-        System.out.println(correo);
-        System.out.println(nombre);
-        SignUp(mAuth, correo, contrasena, context);
+        Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,null,cedulaString);
+
+            System.out.println(contrasenaString);
+        System.out.println(correoString);
+        System.out.println(nombreString);
+        SignUp(mAuth, correoString, contrasenaString, context);
 
         new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
 
     }
+
+    public void showDatePickerDialog(View view) {
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
+                fecha_seleccionada.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
 
     private class JsonTask extends AsyncTask<String, String, JSONObject> {
 
@@ -205,4 +256,5 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
 }
+
 

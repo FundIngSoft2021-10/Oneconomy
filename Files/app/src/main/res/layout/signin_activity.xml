@@ -9,81 +9,159 @@
 
 
     <EditText
+        android:id="@+id/Nombre_usuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:editable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:hint="Nombre_usuario"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toTopOf="@+id/camponombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Apellido"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:editable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:hint="Apellido"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toTopOf="@+id/campocontrasena"
+        app:layout_constraintEnd_toEndOf="@+id/camponombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Nombre_usuario" />
+
+    <EditText
         android:id="@+id/campocorreo"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:editable="false"
         android:ems="10"
         android:hint="Correo"
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/campoconfirmarcontrasena"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campoconfirmarcontrasena"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59" />
+        app:layout_constraintVertical_bias="0.574" />
 
     <EditText
         android:id="@+id/camponombre"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:editable="false"
         android:ellipsize="start"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
         android:textIsSelectable="false"
-        app:layout_constraintBottom_toTopOf="@+id/campocontrasena"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/Apellido"
+        app:layout_constraintEnd_toEndOf="@+id/Nombre_usuario"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Nombre_usuario" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="showDatePickerDialog"
+        android:text="Fecha Nacimiento"
+        app:layout_constraintEnd_toStartOf="@+id/fecha_seleccionada"
+        app:layout_constraintStart_toStartOf="@+id/campocorreo"
+        app:layout_constraintTop_toBottomOf="@+id/campocorreo" />
 
     <EditText
         android:id="@+id/campoconfirmarcontrasena"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:editable="false"
         android:ems="10"
         android:hint="Confirmar Contraseña"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/campocorreo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/campocontrasena"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/campocontrasena" />
 
     <EditText
         android:id="@+id/campocontrasena"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:editable="false"
         android:ems="10"
         android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/campoconfirmarcontrasena"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/Apellido"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Apellido" />
+
+    <EditText
+        android:id="@+id/fecha_seleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:editable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:hint="Fecha"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="@+id/campocorreo"
+        app:layout_constraintTop_toTopOf="@+id/button3" />
+
+    <EditText
+        android:id="@+id/Cedula"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:editable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:hint="Cedula"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        app:layout_constraintEnd_toEndOf="@+id/fecha_seleccionada"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="139dp"
-        android:layout_height="91dp"
+        android:layout_width="112dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/crearctxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/crearctxt"
         tools:srcCompat="@tools:sample/avatars[3]" />
 
     <TextView
         android:id="@+id/crearctxt"
         android:layout_width="201dp"
         android:layout_height="68dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="Registrate"
         android:textSize="30sp"
@@ -94,8 +172,9 @@
 
     <Button
         android:id="@+id/boton_crearcuenta"
-        android:layout_width="300dp"
-        android:layout_height="73dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="#03A9F4"
         android:onClick="crearCuenta"
         android:text="Crear Cuenta"
@@ -103,31 +182,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campocorreo"
-        app:layout_constraintVertical_bias="0.796" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/acceptoterminos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Acepto los términos y condiciones"
         app:layout_constraintBottom_toTopOf="@+id/boton_crearcuenta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campocorreo"
-        app:layout_constraintVertical_bias="0.712" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/terminos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="Terminos y Condiciones"
         android:textColor="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/acceptoterminos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campocorreo"
-        app:layout_constraintVertical_bias="0.866" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
