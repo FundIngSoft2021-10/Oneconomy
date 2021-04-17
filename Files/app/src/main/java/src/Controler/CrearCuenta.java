@@ -93,7 +93,7 @@ public class CrearCuenta extends AppCompatActivity {
 
         boolean error = false;
 
-        CheckBox terminos = (CheckBox) findViewById(R.id.checkBox);
+        CheckBox terminos = (CheckBox) findViewById(R.id.acceptoterminos);
 
         EditText contrasena = (EditText) findViewById(R.id.campocontrasena);
         String contrasenaString = String.valueOf(contrasena.getText());
@@ -115,24 +115,24 @@ public class CrearCuenta extends AppCompatActivity {
         String apellidoString = String.valueOf(apellido.getText());
 
         //aqui no va esta variable que le paso al final en la sigiente linea
-        //EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
-        //String fecha_nacimientoString = String.valueOf(fecha_seleccionada.getText());
-        String fecha_nacimientoString = "";
+        EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
+        String fecha_nacimientoString = String.valueOf(fecha_seleccionada.getText());
+
 
         EditText cedula = (EditText) findViewById(R.id.Cedula);
         String cedulaString = String.valueOf(cedula.getText());
 
 
-
-        if (contrasenaString.compareTo(contrasena2String) != 0)
+        Context context = this;
+        if (contrasenaString.compareTo(contrasena2String) != 0 || (contrasenaString.isEmpty() || contrasena2String.isEmpty()))
         {
-            error = true;
-
+            Toast.makeText(context, "No se pudo crear la cuenta - las contraseñas no coinciden o vacias",
+                    Toast.LENGTH_SHORT).show();
         }
         else
         {
 
-            if (terminos != null) {
+            if (terminos.isChecked() == false) {
                 error = true;
             }
             else
@@ -148,12 +148,10 @@ public class CrearCuenta extends AppCompatActivity {
             }
         }
 
-        if (error)
+        if (error == true)
         {
-            Context context = this;
-            Toast.makeText(context, "No se pudo crear la cuenta - las contraseñas no coinciden",
+            Toast.makeText(context, "No se pudo crear la cuenta - intente de nuevo",
                     Toast.LENGTH_SHORT).show();
-
         }
     }
 

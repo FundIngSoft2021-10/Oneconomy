@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         Context context = this;
 //        showProgressBar();
 
-
         Utils.SignIn(mAuth, email, password, context);
     }
 
