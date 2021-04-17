@@ -3,9 +3,14 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const pdf2table = require('pdf2table');
 const md5 = require('md5');
+const {
+    Base64
+} = require('js-base64');
 
 
-router.use(bodyParser.json({limit: '50mb'}));
+router.use(bodyParser.json({
+    limit: '50mb'
+}));
 
 router.post("/upload", async (req, res) => {
     console.log("Recibio solicitud de subida PDF")
@@ -35,5 +40,7 @@ router.post("/upload", async (req, res) => {
         }
     });
 });
+
+
 
 module.exports = router

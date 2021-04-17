@@ -10,7 +10,6 @@ import com.example.oneconomy.R;
 
 public class ControladorArchivos extends AppCompatActivity {
 
-
     protected void onCreate(){
         Button btn_filePicker = (Button) findViewById(R.id.btn_filePicker);
         btn_filePicker.setOnClickListener(new View.OnClickListener(){
@@ -21,5 +20,42 @@ public class ControladorArchivos extends AppCompatActivity {
             }
         });
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode ==10 && requestCode ==RESULT_OK){
+            String path = data.getData().getPath();
+            System.out.println(path);
+            /*OkHttp request = new OkHttp();
+
+            byte[] input_file = Files.readAllBytes(Paths.get(path));
+            byte[] encodedBytes = Base64.getEncoder().encode(input_file);
+
+            String pdfInBase64 = new String(encodedBytes);
+
+            request.sendPost("file",pdfInBase64);
+            System.out.println(pdfInBase64);*/
+        }
+    }
+
+    /*private void sendPost(String name,String data) throws Exception {
+        RequestBody formBody = new FormBody.Builder()
+                .add(name,data)
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://httpbin.org/post")
+                .addHeader("User-Agent", "Uploader-AndroidStudio")
+                .post(formBody)
+                .build();
+
+        try (Response response = httpClient.newCall(request).execute()) {
+
+            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+
+            // Get response body
+            System.out.println(response.body().string());
+        }
+
+    }*/
 
 }
