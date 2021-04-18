@@ -2,8 +2,7 @@ package src.Controler;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,22 +12,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import src.Libraries.DatePickerFragment;
@@ -37,12 +33,11 @@ import src.Model.Cliente;
 import static src.Libraries.FireBase.Utils.SignUp;
 
 
-
-
-
 public class CrearCuenta extends AppCompatActivity {
 
+    private static final String TAG = "FF";
     private FirebaseAuth mAuth;
+    private static Gson gson = new Gson();
 
     /*
     public static void verificarCodigoError(Task<AuthResult> task, Context context) {
@@ -90,7 +85,8 @@ public class CrearCuenta extends AppCompatActivity {
         setContentView(R.layout.signin_activity);
     }
 
-    public void crearCuenta(View view) throws IOException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void crearCuenta(View view) throws IOException, ParseException {
         boolean error = false;
 
         CheckBox terminos = (CheckBox) findViewById(R.id.acceptoterminos);
@@ -121,6 +117,10 @@ public class CrearCuenta extends AppCompatActivity {
 
         EditText cedula = (EditText) findViewById(R.id.Cedula);
         String cedulaString = String.valueOf(cedula.getText());
+
+
+
+
 
 
         Context context = this;
@@ -156,14 +156,23 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
 
-    private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException, ParseException {
 
         String TAG = "displayname";
 
         Context context = this;
 
-        Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,null,cedulaString);
+        //debo castear el string fecha a Date
+        Date date = null;
 
+        date=new SimpleDateFormat("dd/MM/yyyy").parse(fecha_nacimientoString);
+
+        //la fecha de nacimiento no puede ser null
+        Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,date,cedulaString);
+
+
+        //esto es super importante y descomentar al final
         SignUp(mAuth, cliente, correoString, context);
 
         //new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
@@ -175,7 +184,7 @@ public class CrearCuenta extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                final String selectedDate = day + "/" + (month+1) + "/" + year;
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
                 fecha_seleccionada.setText(selectedDate);
             }
@@ -190,6 +199,7 @@ public class CrearCuenta extends AppCompatActivity {
             public void run() {
                 try {
                     URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/ClienteGP");
+
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
@@ -197,15 +207,20 @@ public class CrearCuenta extends AppCompatActivity {
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
-                    JSONObject jCliente = new JSONObject();
 
-                    jCliente.put("cliente", nuevoCliente);
+                    String ClienteJsonString = gson.toJson(nuevoCliente);
 
-                    Log.i("JSON", jCliente.toString());
+                    //JSONObject jCliente = new JSONObject();
+
+                    //jCliente.put("Cliente", nuevoCliente);
+
+                    Log.i("JSON", ClienteJsonString);
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
                     //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                    os.writeBytes(jCliente.toString());
+                    //os.writeBytes(jCliente.toString());
+                    os.writeBytes(ClienteJsonString);
 
+                    System.out.println("jjjjjjjjjjjjjjjjjjjjjjjj___"  + ClienteJsonString +"___");
                     os.flush();
                     os.close();
 

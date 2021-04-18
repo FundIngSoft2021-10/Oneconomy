@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context, "Authentication failed - Campos Vacios.", Toast.LENGTH_SHORT).show();
         } else {
             signIn(emailString, passwordString);
-            MenuPrincipal(view);
+
         }
 
     }

@@ -20,6 +20,7 @@ public class Cliente {
         this.apellido = apellido;
         this.fecha_Nacimiento = fecha_Nacimiento;
         this.cedula = cedula;
+
     }
 
     public String getEmail() {

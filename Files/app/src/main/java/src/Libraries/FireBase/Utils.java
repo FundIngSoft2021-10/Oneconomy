@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import src.Controler.CrearCuenta;
 import src.Controler.MainActivity;
+import src.Controler.MenuPrincipal;
 import src.Model.Cliente;
 
 public class Utils {
@@ -37,6 +38,9 @@ public class Utils {
                             //se muestra mensaje de SUCESS
                             Toast.makeText(context, "Authentication - sign in sucess.",
                                     Toast.LENGTH_SHORT).show();
+
+                            Intent i = new Intent(context, MenuPrincipal.class);
+                            context.startActivity(i);
 
                             //updateUI(user);
                         } else {
