@@ -1,6 +1,7 @@
 package src.Libraries.FireBase;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import src.Controler.CrearCuenta;
+import src.Controler.MainActivity;
 import src.Model.Cliente;
 
 public class Utils {
@@ -56,7 +58,6 @@ public class Utils {
                 });
     }
 
-    // Retorna 0 en caso de exito, de lo contrario 1
     public static void SignUp(FirebaseAuth mAuth, Cliente cliente, String password, Context context) {
 
         AuthResult result;
@@ -71,7 +72,8 @@ public class Utils {
                             Toast.makeText(context, "Registration - sign up sucess.",
                                     Toast.LENGTH_SHORT).show();
                             CrearCuenta.enviarPost(cliente);
-
+                            Intent i = new Intent(context, MainActivity.class);
+                            context.startActivity(i);
                         } else {
                             // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

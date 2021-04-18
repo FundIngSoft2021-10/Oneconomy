@@ -16,7 +16,7 @@ public class MenuPrincipal extends AppCompatActivity {
     }
 
     public void Finanzas(View view) {
-        Intent i = new Intent(this, MenuPrincipal.class);
+        Intent i = new Intent(this, Finanzas.class);
         startActivity(i);
     }
 }

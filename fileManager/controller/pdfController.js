@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const pdf2table = require('pdf2table');
 const md5 = require('md5');
+const dbController = require('./databaseController')
+
 const {
     Base64
 } = require('js-base64');
@@ -30,15 +32,14 @@ router.post("/upload", async (req, res) => {
 
                 pdf2table.parse(buffer, function (err, rows, rowsdebug) {
                     if (err) return console.error(err)
-                    x = 0
-                    for (r of rows)
-                        if (r[0].indexOf('/') != -1)
-                            console.log(r)
+                    rows = rows.filter(e => e[0].indexOf('/') != -1)
+                    dbController.insertMovements(rows, 'osmancadc@hotmail.com', 154597)
                     res.status(200).send("Información subida con exito")
                 });
             });
         }
     });
+
 });
 
 
