@@ -13,14 +13,13 @@
         android:theme="@style/Theme.Oneconomy">
         <activity android:name="src.Controler.Pruebas_visuales"></activity>
         <activity android:name="src.Controler.MovimientoManual"></activity>
-        <activity android:name="src.Controler.Finanzas" />
-        <activity android:name="src.Controler.MenuPrincipal" />
-        <activity android:name="src.Controler.RecuperarContrasena" />
-        <activity android:name="src.Controler.ControladorArchivos">
+        <activity android:name="src.Controler.Finanzas" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="src.Controler.MenuPrincipal" />
+        <activity android:name="src.Controler.RecuperarContrasena" />
         <activity android:name="src.Controler.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
