@@ -100,10 +100,12 @@ public class CrearCuenta extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
         TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-        textView.setMaxLines(5);
+        textView.setMaxLines(15);
         textView.setScroller(new Scroller(this));
         textView.setVerticalScrollBarEnabled(true);
+        textView.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
         textView.setMovementMethod(new ScrollingMovementMethod());
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

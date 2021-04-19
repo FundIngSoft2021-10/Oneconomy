@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context="src.Controler.MovimientoManual">
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Entrada Manual"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonFechaNacimiento"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:background="#03A9F4"
+        android:backgroundTint="#03A9F4"
+        android:backgroundTintMode="add"
+        android:onClick="showDatePickerDialog"
+        android:text="Fecha Nacimiento"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fecha_seleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:editable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:hint="Fecha"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonFechaNacimiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento"
+        app:layout_constraintTop_toTopOf="@+id/buttonFechaNacimiento" />
 </androidx.constraintlayout.widget.ConstraintLayout>
