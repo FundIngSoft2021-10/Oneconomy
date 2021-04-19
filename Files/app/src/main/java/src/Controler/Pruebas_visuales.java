@@ -12,5 +12,9 @@ public class Pruebas_visuales extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pruebas_visuales);
+
+
+
+
     }
 }

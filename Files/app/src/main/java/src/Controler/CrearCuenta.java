@@ -87,7 +87,9 @@ public class CrearCuenta extends AppCompatActivity {
         TextView textView = (TextView) dialog.findViewById(android.R.id.message);
         textView.setScroller(new Scroller(this));
         textView.setVerticalScrollBarEnabled(true);
+        textView.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
         textView.setMovementMethod(new ScrollingMovementMethod());
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
