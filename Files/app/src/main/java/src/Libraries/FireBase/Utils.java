@@ -44,20 +44,10 @@ public class Utils {
 
                             //updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-
-                            //se muestra mensaje de FAILED
                             Toast.makeText(context, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            // updateUI(null);
-                            // checkForMultiFactorFailure(task.getException());
                         }
-
-//                        if (!task.isSuccessful()) {
-                        //                          mBinding.status.setText(R.string.auth_failed);
-                        //                    }
-                        // hideProgressBar();
                     }
                 });
     }
@@ -73,18 +63,40 @@ public class Utils {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             //se muestra mensaje de SUCESS
-                            Toast.makeText(context, "Registration - sign up sucess.",
-                                    Toast.LENGTH_SHORT).show();
-                            CrearCuenta.enviarPost(cliente);
-                            Intent i = new Intent(context, MainActivity.class);
-                            context.startActivity(i);
+
+                            try {
+                                if(CrearCuenta.enviarPost(cliente) == true){
+                                    //CrearCuenta.Alerta(context, "Su cuenta ha sido creada", "Ya puedes iniciar sesión");
+
+                                    Toast.makeText(context, "Cuenta creada",
+                                            Toast.LENGTH_SHORT).show();
+
+                                    Intent i = new Intent(context, MainActivity.class);
+                                    context.startActivity(i);
+                                }
+                                else{
+                                    CrearCuenta.Alerta(context, "Error en el servidor", "Por favor intentelo más tarde");
+
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    user.delete().addOnCompleteListener
+                                            (new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d(TAG, "User account deleted.");
+                                                    }
+                                                }
+                                            });
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+
                         } else {
                             // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-
-
-                            //CrearCuenta.verificarCodigoError(task, context);
-                            Toast.makeText(context, task.getException().getMessage() , Toast.LENGTH_LONG).show();
+                            CrearCuenta.verificarCodigoError(task, context);
                         }
                     }
                 });

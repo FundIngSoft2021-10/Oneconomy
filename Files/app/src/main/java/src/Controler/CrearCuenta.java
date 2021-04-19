@@ -2,6 +2,7 @@ package src.Controler;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,9 +14,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
@@ -38,38 +42,18 @@ public class CrearCuenta extends AppCompatActivity {
     private static final String TAG = "FF";
     private FirebaseAuth mAuth;
     private static Gson gson = new Gson();
+    private static boolean estado = false;
 
-    /*
     public static void verificarCodigoError(Task<AuthResult> task, Context context) {
         switch (task.getException().getMessage()) {
-            case "auth/email-already-in-use":
-
-                Toast.makeText(context, "El email ya está en uso",
-                        Toast.LENGTH_LONG).show();
-
+            case "The email address is already in use by another account.":
+                Alerta(context, "No se pudo crear la cuenta", "+ El email ya está en uso");
             break;
-
-             case "auth/invalid-email":
-                //
+             case "The email address is badly formatted.":
+                 Alerta(context, "No se pudo crear la cuenta", "+ El email tiene un formato incorrecto");
             break;
-            case "auth/operation-not-allowed":
-                //
-                break;
-            case "auth/weak-password":
-                //
-                break;
-            case "auth/timeout":
-                //
-                break;
-            default:
-                //
-                break;
-
-
         }
     }
-    */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +73,8 @@ public class CrearCuenta extends AppCompatActivity {
     public void crearCuenta(View view) throws IOException, ParseException {
         boolean error = false;
 
+        String mensaje = "";
+
         CheckBox terminos = (CheckBox) findViewById(R.id.acceptoterminos);
 
         EditText contrasena = (EditText) findViewById(R.id.campocontrasena);
@@ -96,7 +82,6 @@ public class CrearCuenta extends AppCompatActivity {
 
         EditText contrasena2 = (EditText) findViewById(R.id.campoconfirmarcontrasena);
         String contrasena2String = String.valueOf(contrasena2.getText());
-
 
         EditText correo = (EditText) findViewById(R.id.campocorreo);
         String correoString = String.valueOf(correo.getText());
@@ -110,51 +95,60 @@ public class CrearCuenta extends AppCompatActivity {
         EditText apellido = (EditText) findViewById(R.id.Apellido);
         String apellidoString = String.valueOf(apellido.getText());
 
-        //aqui no va esta variable que le paso al final en la sigiente linea
         EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
         String fecha_nacimientoString = String.valueOf(fecha_seleccionada.getText());
-
 
         EditText cedula = (EditText) findViewById(R.id.Cedula);
         String cedulaString = String.valueOf(cedula.getText());
 
-
-
-
-
-
         Context context = this;
-        if (contrasenaString.compareTo(contrasena2String) != 0 || (contrasenaString.isEmpty() || contrasena2String.isEmpty()))
+        if (contrasenaString.compareTo(contrasena2String) != 0)
         {
-            Toast.makeText(context, "No se pudo crear la cuenta - las contraseñas no coinciden o vacias",
-                    Toast.LENGTH_SHORT).show();
+            mensaje = mensaje + "+ Las contraseñas no coinciden\n";
+            error = true;
         }
-        else
-        {
-
-            if (terminos.isChecked() == false) {
-                error = true;
-            }
-            else
-            {
-                if (correoString.isEmpty() ||nombre_usuarioString.isEmpty() || nombreString.isEmpty() || apellidoString.isEmpty() || fecha_nacimientoString.isEmpty() || cedulaString.isEmpty() ) {
-                    error = true;
-                }
-                else
-                {
-                    System.out.println("Intentando Crear...");
-                    guardarCuenta(contrasenaString, correoString, nombreString,nombre_usuarioString,apellidoString,fecha_nacimientoString, cedulaString);
-               }
-            }
+        if(correoString.isEmpty() ||nombre_usuarioString.isEmpty() || nombreString.isEmpty() || apellidoString.isEmpty() || fecha_nacimientoString.isEmpty() || cedulaString.isEmpty() || contrasena2String.isEmpty() || contrasenaString.isEmpty()){
+            mensaje = mensaje + "+ Existen campos sin completar\n";
+            error = true;
+        }
+        if((!contrasena2String.isEmpty() && (contrasena2String.length()<6)) || (!contrasenaString.isEmpty() && (contrasenaString.length()<6))){
+            mensaje = mensaje + "+ La contraseña debe tener más de 6 caracteres\n";
+            error = true;
+        }
+        if(terminos.isChecked() == false){
+            mensaje = mensaje + "+ Debes aceptar los terminos y condiciones\n";
+            error = true;
         }
 
-        if (error == true)
+        if (error == false)
         {
-            Toast.makeText(context, "No se pudo crear la cuenta - intente de nuevo",
-                    Toast.LENGTH_SHORT).show();
+            System.out.println("Intentando Crear...");
+            guardarCuenta(contrasenaString, correoString, nombreString,nombre_usuarioString,apellidoString,fecha_nacimientoString, cedulaString);
+        }
+        else{
+            mensaje = mensaje.substring(0, mensaje.length() - 1);
+            Alerta(context,"No se pudo crear la cuenta", mensaje);
         }
     }
 
+    public static void Alerta(Context context, String titulo, String cuerpo){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setTitle(titulo);
+        builder.setMessage(cuerpo);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException, ParseException {
@@ -173,7 +167,7 @@ public class CrearCuenta extends AppCompatActivity {
 
 
         //esto es super importante y descomentar al final
-        SignUp(mAuth, cliente, correoString, context);
+        SignUp(mAuth, cliente, contrasenaString, context);
 
         //new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
     }
@@ -193,7 +187,7 @@ public class CrearCuenta extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public static void enviarPost(Cliente nuevoCliente) {
+    public static boolean enviarPost(Cliente nuevoCliente) throws InterruptedException {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -207,12 +201,7 @@ public class CrearCuenta extends AppCompatActivity {
                     conn.setDoOutput(true);
                     conn.setDoInput(true);
 
-
                     String ClienteJsonString = gson.toJson(nuevoCliente);
-
-                    //JSONObject jCliente = new JSONObject();
-
-                    //jCliente.put("Cliente", nuevoCliente);
 
                     Log.i("JSON", ClienteJsonString);
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
@@ -220,13 +209,15 @@ public class CrearCuenta extends AppCompatActivity {
                     //os.writeBytes(jCliente.toString());
                     os.writeBytes(ClienteJsonString);
 
-                    System.out.println("jjjjjjjjjjjjjjjjjjjjjjjj___"  + ClienteJsonString +"___");
                     os.flush();
                     os.close();
 
                     Log.i("STATUS", String.valueOf(conn.getResponseCode()));
                     Log.i("MSG" , conn.getResponseMessage());
 
+                    if(String.valueOf(conn.getResponseCode()).equals("200")){
+                        estado = true;
+                    }
                     conn.disconnect();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -235,6 +226,9 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
+        thread.join();
+        System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
+        return estado;
     }
 
     /*
