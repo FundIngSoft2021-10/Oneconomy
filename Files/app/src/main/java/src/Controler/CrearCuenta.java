@@ -172,7 +172,7 @@ public class CrearCuenta extends AppCompatActivity {
         Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,date,cedulaString);
 
         //esto es super importante y descomentar al final
-        SignUp(mAuth, cliente, dominer, context);
+        SignUp(mAuth, cliente, contrasenaString, context);
 
         //new JsonTask().execute("https://striped-weaver-309814.ue.r.appspot.com/ClienteTest");
     }
