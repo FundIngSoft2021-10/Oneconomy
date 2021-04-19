@@ -165,7 +165,6 @@ public class CrearCuenta extends AppCompatActivity {
         //la fecha de nacimiento no puede ser null
         Cliente cliente = new Cliente(correoString,nombre_usuarioString,nombreString,apellidoString,date,cedulaString);
 
-
         //esto es super importante y descomentar al final
         SignUp(mAuth, cliente, contrasenaString, context);
 
