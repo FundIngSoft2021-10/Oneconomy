@@ -219,6 +219,8 @@ public class CrearCuenta extends AppCompatActivity {
             }
         });
 
+
+
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -261,9 +263,13 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
+<<<<<<< HEAD
+
+=======
         thread.join();
         System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
         return estado;
+>>>>>>> 72a53c621b277d9fa7c62953a52916006c51dcaf
     }
 
     /*
