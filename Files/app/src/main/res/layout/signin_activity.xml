@@ -4,9 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:animationCache="false"
     tools:context="src.Controler.CrearCuenta">
 
+
+    <ImageView
+        android:id="@+id/logo3"
+        android:layout_width="227dp"
+        android:layout_height="87dp"
+        app:layout_constraintBottom_toTopOf="@+id/Nombre_usuario"
+        app:layout_constraintEnd_toStartOf="@+id/crearctxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imagen"
+        tools:srcCompat="@drawable/imagen" />
 
     <EditText
         android:id="@+id/Nombre_usuario"
@@ -154,19 +166,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/buttonFechaNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/buttonFechaNacimiento" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="112dp"
-        android:layout_height="127dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/crearctxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/crearctxt"
-        tools:srcCompat="@tools:sample/avatars[3]" />
 
     <TextView
         android:id="@+id/crearctxt"

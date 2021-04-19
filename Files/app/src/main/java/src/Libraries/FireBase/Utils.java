@@ -64,11 +64,6 @@ public class Utils {
 
                             Toast.makeText(context, "Registration - sign up sucess.",
                                     Toast.LENGTH_SHORT).show();
-                            CrearCuenta.enviarPost(cliente);
-                            Intent i = new Intent(context, MainActivity.class);
-                            context.startActivity(i);
-
-
                             try {
                                 if(CrearCuenta.enviarPost(cliente) == true){
                                     //CrearCuenta.Alerta(context, "Su cuenta ha sido creada", "Ya puedes iniciar sesión");

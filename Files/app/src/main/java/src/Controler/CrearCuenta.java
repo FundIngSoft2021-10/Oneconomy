@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
 
@@ -70,28 +72,11 @@ public class CrearCuenta extends AppCompatActivity {
     }
 
     public void mostrarTerminos(View view){
+        String text = getString(R.string.terminos);
+
         AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("Terminos y condiciones")
-                .setMessage("1. Aceptación - El acceso a esta aplicación y el registro en nuestra base de datos, conllevan la\n" +
-                        "aceptación del usuario a todas las estipulaciones de este acuerdo.\n" +
-                        "2. Política de manejo de la privacidad del usuario - Los datos suministrados a esta aplicación\n" +
-                        "tales como nombre, cedula, y datos financieros, no seran compartidos con terceros en ningún momento" +
-                        "3. Acceso al sistema, correo de acceso, contraseña y seguridad - El USUARIO será responsable\n" +
-                        "por la confidencialidad y uso de su correo de acceso y contraseña . El\n" +
-                        "USUARIO será responsable por todas las órdenes transmitidas a través de su número de\n" +
-                        "acceso, contraseña, y cualquier orden recibida por Oneconomy de esta manera se supondrá\n" +
-                        "emitida por el USUARIO. Todas las órdenes emitidas, se supondrán realizadas en el momento\n" +
-                        "en que sean recibidas por Oneconomy , salvo que el reglamento o las normas legales que\n" +
-                        "regulan cada producto o servicio, dispongan otra cosa. El USUARIO acepta que notificará a\n" +
-                        "Oneconomy cualquiera de las siguientes situaciones: *Pérdida o robo de su cuenta,\n" +
-                        "contraseña y/o número de cuenta. *Uso no autorizado de su código de acceso o contraseña. *\n" +
-                        "Alguna falla, error o hecho inusual, al recibir algún mensaje relacionado con una orden iniciada\n" +
-                        "por el USUARIO a través del sistema electrónico, o que haya sido recibida y/o ejecutada a\n" +
-                        "través del mismo. * La confirmación de alguna orden que el USUARIO no emitió, o alguna\n" +
-                        "imprecisión o desacuerdo en la transmisión de la información.\n" +
-                        "4. Transmisión de datos – Oneconomy requiere de la transmision de datos del USUARIO\n" +
-                        "a través de Internet, asumiendo que el usuario autoriza a Oneconomy para almacenar y \n" +
-                        "tratar sus datos. Dichos datos serán tratados con altas medidas de confidencialidad.")
+                .setTitle("Terminos y condiciones")
+                .setMessage(text)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -100,7 +85,6 @@ public class CrearCuenta extends AppCompatActivity {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show();
         TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-        textView.setMaxLines(5);
         textView.setScroller(new Scroller(this));
         textView.setVerticalScrollBarEnabled(true);
         textView.setMovementMethod(new ScrollingMovementMethod());
