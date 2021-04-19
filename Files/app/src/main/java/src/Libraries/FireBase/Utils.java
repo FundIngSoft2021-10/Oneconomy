@@ -28,7 +28,6 @@ public class Utils {
     }
 
     public static void SignIn(FirebaseAuth mAuth, String email, String password, Context context) {
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -56,7 +55,6 @@ public class Utils {
     }
 
     public static void SignUp(FirebaseAuth mAuth, Cliente cliente, String password, Context context) {
-
         AuthResult result;
         mAuth.createUserWithEmailAndPassword(cliente.getEmail(), password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

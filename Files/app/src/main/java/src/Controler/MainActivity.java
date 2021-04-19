@@ -19,13 +19,11 @@ import src.Libraries.FireBase.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //eliminar focus de primer texto mediante la siguiente linea
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -42,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Prueba(View view) {
-
         EditText email = (EditText) findViewById(R.id.Email);
         String emailString = String.valueOf(email.getText());
 
@@ -55,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context, "Authentication failed - Campos Vacios.", Toast.LENGTH_SHORT).show();
         } else {
             signIn(emailString, passwordString);
-
         }
-
     }
 
     public void MenuPrincipal(View view){
@@ -66,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void CrearCuenta(View view) {
-
         Intent i = new Intent(this, CrearCuenta.class);
         startActivity(i);
     }

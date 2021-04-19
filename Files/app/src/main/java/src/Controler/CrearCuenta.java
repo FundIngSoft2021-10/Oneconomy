@@ -104,7 +104,6 @@ public class CrearCuenta extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void crearCuenta(View view) throws IOException, ParseException {
         boolean error = false;
-
         String mensaje = "";
 
         CheckBox terminos = (CheckBox) findViewById(R.id.acceptoterminos);
@@ -184,14 +183,9 @@ public class CrearCuenta extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void guardarCuenta(String contrasenaString, String correoString, String nombreString, String nombre_usuarioString, String apellidoString, String fecha_nacimientoString, String cedulaString) throws IOException, ParseException {
-
         String TAG = "displayname";
-
         Context context = this;
-
-        //debo castear el string fecha a Date
         Date date = null;
-
         date=new SimpleDateFormat("dd/MM/yyyy").parse(fecha_nacimientoString);
 
         //la fecha de nacimiento no puede ser null
@@ -214,8 +208,6 @@ public class CrearCuenta extends AppCompatActivity {
                 fecha_seleccionada.setText(selectedDate);
             }
         });
-
-
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
