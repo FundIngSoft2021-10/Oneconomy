@@ -13,25 +13,26 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Scroller;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.oneconomy.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
+<<<<<<< HEAD
+=======
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
+>>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,6 +43,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import src.Libraries.DatePickerFragment;
 import src.Model.Cliente;
 
@@ -256,6 +258,76 @@ public class CrearCuenta extends AppCompatActivity {
         return estado;
 
     }
+<<<<<<< HEAD
+
+    /*
+
+    private class JsonTask extends AsyncTask<String, String, JSONObject> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected JSONObject doInBackground(String... params) {
+
+
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+
+               v
+
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line+"\n");
+                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
+
+                }
+
+                return new JSONObject(buffer.toString());
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+                try {
+                    if (reader != null) {
+                        reader.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject response) {
+            if(response != null)
+            {
+                //
+            }
+        }
+    }*/
+
+=======
+>>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 }
 
 

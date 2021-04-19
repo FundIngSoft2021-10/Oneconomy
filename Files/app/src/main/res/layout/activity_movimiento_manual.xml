@@ -10,7 +10,7 @@
         android:id="@+id/boton_crearcuenta2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#03A9F4"
         android:onClick="crearCuenta"
         android:text="Crear Cuenta"
@@ -21,102 +21,77 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup3"
-        android:layout_width="214dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="96dp"
-        app:layout_constraintBottom_toTopOf="@+id/boton_crearcuenta2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crearctxt5"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/crearctxt5"
-        android:layout_width="210dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="left"
-        android:text="Descripción:"
-        android:textSize="18sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-        tools:visibility="visible" />
-
     <TextView
         android:id="@+id/crearctxt4"
-        android:layout_width="135dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:gravity="left"
         android:text="Valor:"
         android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="314dp"
+        app:layout_constraintEnd_toEndOf="@+id/checkIngreso"
+        app:layout_constraintStart_toStartOf="@+id/checkBox3"
+        app:layout_constraintTop_toBottomOf="@+id/checkIngreso"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/crearctxt3"
-        android:layout_width="215dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:gravity="left"
         android:text="Método de pago:"
         android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/crearctxt4"
-        app:layout_constraintHorizontal_bias="0.294"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_seleccionada2"
+        app:layout_constraintEnd_toEndOf="@+id/crearctxt4"
+        app:layout_constraintStart_toStartOf="@+id/crearctxt4"
+        app:layout_constraintTop_toBottomOf="@+id/crearctxt4"
         tools:visibility="visible" />
 
     <Button
         android:id="@+id/buttonFechaNacimiento2"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="213dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:backgroundTintMode="add"
         android:onClick="showDatePickerDialog"
         android:text="Fecha"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo4" />
+        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/fecha_seleccionada2"
-        android:layout_width="213dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="280dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:editable="false"
         android:ellipsize="start"
         android:ems="10"
         android:inputType="textPersonName"
         android:textIsSelectable="false"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonFechaNacimiento2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFechaNacimiento2"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento2"
+        app:layout_constraintTop_toTopOf="@+id/buttonFechaNacimiento2"
+        app:layout_constraintVertical_bias="0.014" />
 
     <TextView
         android:id="@+id/crearctxt2"
-        android:layout_width="171dp"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="Entrada Manual"
-        android:textSize="30sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -124,62 +99,108 @@
 
     <ImageView
         android:id="@+id/logo4"
-        android:layout_width="227dp"
-        android:layout_height="87dp"
-        app:layout_constraintBottom_toTopOf="@+id/Nombre_usuario"
-        app:layout_constraintEnd_toStartOf="@+id/crearctxt2"
+        android:layout_width="182dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/crearctxt2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/crearctxt2"
         app:srcCompat="@drawable/imagen"
         tools:srcCompat="@drawable/imagen" />
 
     <CheckBox
         android:id="@+id/checkIngreso"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ingreso"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento2"
-        tools:layout_editor_absoluteY="154dp" />
+        tools:layout_editor_absoluteY="248dp" />
 
     <CheckBox
         android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:text="Egreso"
+        app:layout_constraintBottom_toBottomOf="@+id/checkIngreso"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFechaNacimiento2"
+        app:layout_constraintTop_toTopOf="@+id/checkIngreso" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento2"
-        app:layout_constraintTop_toBottomOf="@+id/checkIngreso" />
+        tools:layout_editor_absoluteY="615dp" />
 
     <EditText
         android:id="@+id/editTextNumber"
         android:layout_width="130dp"
         android:layout_height="42dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="370dp" />
+        tools:layout_editor_absoluteY="558dp" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="214dp"
         android:layout_height="40dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="370dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="571dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="128dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="214dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintBottom_toTopOf="@+id/boton_crearcuenta2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/crearctxt5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/crearctxt5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:gravity="left"
+        android:text="Descripción:"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+        app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintVertical_bias="0.523"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="260dp" />
+
+    <Spinner
+        android:id="@+id/Desplegable_Metodo_Pago"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/crearctxt3"
+        app:layout_constraintStart_toStartOf="@+id/crearctxt3"
+        app:layout_constraintTop_toBottomOf="@+id/crearctxt3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
