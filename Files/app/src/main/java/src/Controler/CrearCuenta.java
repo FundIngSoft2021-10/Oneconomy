@@ -3,6 +3,7 @@ package src.Controler;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -26,9 +27,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -217,7 +226,6 @@ public class CrearCuenta extends AppCompatActivity {
             public void run() {
                 try {
                     URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/ClienteGP");
-
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
@@ -228,6 +236,7 @@ public class CrearCuenta extends AppCompatActivity {
                     String ClienteJsonString = gson.toJson(nuevoCliente);
 
                     Log.i("JSON", ClienteJsonString);
+
                     DataOutputStream os = new DataOutputStream(conn.getOutputStream());
                     //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
                     //os.writeBytes(jCliente.toString());
@@ -250,79 +259,11 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
-
         thread.join();
         System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
         return estado;
 
     }
-
-    /*
-
-    private class JsonTask extends AsyncTask<String, String, JSONObject> {
-
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        protected JSONObject doInBackground(String... params) {
-
-
-            HttpURLConnection connection = null;
-            BufferedReader reader = null;
-
-            try {
-                URL url = new URL(params[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-
-
-                InputStream stream = connection.getInputStream();
-
-                reader = new BufferedReader(new InputStreamReader(stream));
-
-                StringBuffer buffer = new StringBuffer();
-                String line = "";
-
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line+"\n");
-                    Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
-
-                }
-
-                return new JSONObject(buffer.toString());
-
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            } finally {
-                if (connection != null) {
-                    connection.disconnect();
-                }
-                try {
-                    if (reader != null) {
-                        reader.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject response) {
-            if(response != null)
-            {
-                //
-            }
-        }
-    }*/
-
 }
 
 

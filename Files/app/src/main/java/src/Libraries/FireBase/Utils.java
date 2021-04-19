@@ -21,6 +21,11 @@ import src.Model.Cliente;
 public class Utils {
 
     private static final String TAG = "EmailPassword";
+    private static FirebaseUser user;
+
+    public static FirebaseUser getUser() {
+        return user;
+    }
 
     public static void SignIn(FirebaseAuth mAuth, String email, String password, Context context) {
 
@@ -31,7 +36,7 @@ public class Utils {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
 
                             //se muestra mensaje de SUCESS
                             Toast.makeText(context, "Authentication - sign in sucess.",
@@ -76,7 +81,7 @@ public class Utils {
                                 else{
                                     CrearCuenta.Alerta(context, "Error en el servidor", "Por favor intentelo más tarde");
 
-                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    user = mAuth.getCurrentUser();
                                     user.delete().addOnCompleteListener
                                             (new OnCompleteListener<Void>() {
                                                 @Override
