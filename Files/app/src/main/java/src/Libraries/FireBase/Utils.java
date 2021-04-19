@@ -63,14 +63,13 @@ public class Utils {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             //se muestra mensaje de SUCESS
-<<<<<<< HEAD
+
                             Toast.makeText(context, "Registration - sign up sucess.",
                                     Toast.LENGTH_SHORT).show();
                             CrearCuenta.enviarPost(cliente);
                             Intent i = new Intent(context, MainActivity.class);
                             context.startActivity(i);
-                            
-=======
+
 
                             try {
                                 if(CrearCuenta.enviarPost(cliente) == true){
@@ -101,7 +100,6 @@ public class Utils {
                             }
 
 
->>>>>>> 72a53c621b277d9fa7c62953a52916006c51dcaf
                         } else {
                             // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

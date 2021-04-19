@@ -11,7 +11,6 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -227,13 +226,12 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
-<<<<<<< HEAD
 
-=======
+
         thread.join();
         System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
         return estado;
->>>>>>> 72a53c621b277d9fa7c62953a52916006c51dcaf
+
     }
 
     /*
