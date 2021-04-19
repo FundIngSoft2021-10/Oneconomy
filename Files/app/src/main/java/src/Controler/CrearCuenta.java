@@ -5,23 +5,27 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+<<<<<<< HEAD
+=======
+import android.widget.Scroller;
+import android.widget.TextView;
+>>>>>>> 343a5d1d2c1698c0e86dd647a23244cb1eaf3eaa
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.oneconomy.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -29,7 +33,6 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import src.Libraries.DatePickerFragment;
 import src.Model.Cliente;
 
@@ -66,6 +69,43 @@ public class CrearCuenta extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         setContentView(R.layout.signin_activity);
+    }
+
+    public void mostrarTerminos(View view){
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("Terminos y condiciones")
+                .setMessage("1. Aceptación - El acceso a esta aplicación y el registro en nuestra base de datos, conllevan la\n" +
+                        "aceptación del usuario a todas las estipulaciones de este acuerdo.\n" +
+                        "2. Política de manejo de la privacidad del usuario - Los datos suministrados a esta aplicación\n" +
+                        "tales como nombre, cedula, y datos financieros, no seran compartidos con terceros en ningún momento" +
+                        "3. Acceso al sistema, correo de acceso, contraseña y seguridad - El USUARIO será responsable\n" +
+                        "por la confidencialidad y uso de su correo de acceso y contraseña . El\n" +
+                        "USUARIO será responsable por todas las órdenes transmitidas a través de su número de\n" +
+                        "acceso, contraseña, y cualquier orden recibida por Oneconomy de esta manera se supondrá\n" +
+                        "emitida por el USUARIO. Todas las órdenes emitidas, se supondrán realizadas en el momento\n" +
+                        "en que sean recibidas por Oneconomy , salvo que el reglamento o las normas legales que\n" +
+                        "regulan cada producto o servicio, dispongan otra cosa. El USUARIO acepta que notificará a\n" +
+                        "Oneconomy cualquiera de las siguientes situaciones: *Pérdida o robo de su cuenta,\n" +
+                        "contraseña y/o número de cuenta. *Uso no autorizado de su código de acceso o contraseña. *\n" +
+                        "Alguna falla, error o hecho inusual, al recibir algún mensaje relacionado con una orden iniciada\n" +
+                        "por el USUARIO a través del sistema electrónico, o que haya sido recibida y/o ejecutada a\n" +
+                        "través del mismo. * La confirmación de alguna orden que el USUARIO no emitió, o alguna\n" +
+                        "imprecisión o desacuerdo en la transmisión de la información.\n" +
+                        "4. Transmisión de datos – Oneconomy requiere de la transmision de datos del USUARIO\n" +
+                        "a través de Internet, asumiendo que el usuario autoriza a Oneconomy para almacenar y \n" +
+                        "tratar sus datos. Dichos datos serán tratados con altas medidas de confidencialidad.")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show();
+        TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+        textView.setMaxLines(5);
+        textView.setScroller(new Scroller(this));
+        textView.setVerticalScrollBarEnabled(true);
+        textView.setMovementMethod(new ScrollingMovementMethod());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -226,12 +266,18 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
+<<<<<<< HEAD
 
 
         thread.join();
         System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
         return estado;
 
+=======
+        thread.join();
+        System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
+        return estado;
+>>>>>>> 343a5d1d2c1698c0e86dd647a23244cb1eaf3eaa
     }
 
     /*

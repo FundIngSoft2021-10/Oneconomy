@@ -20,9 +20,7 @@ import src.Model.Cliente;
 
 public class Utils {
 
-
     private static final String TAG = "EmailPassword";
-
 
     public static void SignIn(FirebaseAuth mAuth, String email, String password, Context context) {
 
@@ -74,7 +72,6 @@ public class Utils {
                             try {
                                 if(CrearCuenta.enviarPost(cliente) == true){
                                     //CrearCuenta.Alerta(context, "Su cuenta ha sido creada", "Ya puedes iniciar sesión");
-
                                     Toast.makeText(context, "Cuenta creada",
                                             Toast.LENGTH_SHORT).show();
 
@@ -97,8 +94,8 @@ public class Utils {
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
-                            }
 
+                            }
 
                         } else {
                             // If sign up fails, display a message to the user.
