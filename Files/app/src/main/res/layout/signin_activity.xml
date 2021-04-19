@@ -11,12 +11,15 @@
 
     <ImageView
         android:id="@+id/logo3"
-        android:layout_width="227dp"
-        android:layout_height="87dp"
+        android:layout_width="204dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toTopOf="@+id/Nombre_usuario"
         app:layout_constraintEnd_toStartOf="@+id/crearctxt"
+        app:layout_constraintHorizontal_bias="0.235"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/imagen"
         tools:srcCompat="@drawable/imagen" />
 
@@ -169,14 +172,15 @@
 
     <TextView
         android:id="@+id/crearctxt"
-        android:layout_width="201dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="179dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="Registrate"
         android:textSize="30sp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/logo3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
