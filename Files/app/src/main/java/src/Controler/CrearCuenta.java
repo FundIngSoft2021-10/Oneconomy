@@ -189,6 +189,8 @@ public class CrearCuenta extends AppCompatActivity {
             }
         });
 
+
+
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
@@ -234,6 +236,7 @@ public class CrearCuenta extends AppCompatActivity {
         });
 
         thread.start();
+
     }
 
     /*

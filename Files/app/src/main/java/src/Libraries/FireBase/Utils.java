@@ -78,6 +78,7 @@ public class Utils {
                             CrearCuenta.enviarPost(cliente);
                             Intent i = new Intent(context, MainActivity.class);
                             context.startActivity(i);
+                            
                         } else {
                             // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
