@@ -108,6 +108,7 @@ public class Utils {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
 
+
                             boolean bandera = false;
 
                             try {
@@ -116,7 +117,6 @@ public class Utils {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-
                             if (bandera == false)
                             {
                                 //aqui deberia verificar o tomar las medidas necesarias qen caso de que la cunta sea eliminada de firebase pero no de la bse de datos por algun problema con el servidor
