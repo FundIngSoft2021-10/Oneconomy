@@ -29,6 +29,7 @@ public class MovimientoManual extends AppCompatActivity {
     private static Cliente cliente;
     private static Campos campos;
     private static ArrayList<String> resultados;
+    ArrayList<ArrayList<String>> listOLists = new ArrayList<>();
 
 
     @Override
@@ -51,7 +52,7 @@ public class MovimientoManual extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    ArrayList<ArrayList<String>> listOLists = new ArrayList<>();
+
                     StringBuilder resultado = new StringBuilder();
 
                     String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + "dominer340@gmail.com";
@@ -59,7 +60,7 @@ public class MovimientoManual extends AppCompatActivity {
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
-                    
+
 
                     BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     String linea;
