@@ -1,6 +1,8 @@
 package src.Controler;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,7 +39,20 @@ public class MovimientoManual extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimiento_manual);
         try {
+
             this.recibirGET();
+            Spinner s = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
+            ArrayList<String> opciones = new ArrayList<>();
+
+            for(ArrayList<String> actual : listOLists){
+                opciones.add(actual.get(1));
+                System.out.println("*********" + actual.get(0) + ":::" + actual.get(1) + "***********");
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            s.setAdapter(adapter);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -47,12 +62,11 @@ public class MovimientoManual extends AppCompatActivity {
 
         Thread thread = new Thread(new Runnable() {
 
-
-
             @Override
             public void run() {
                 try {
-
+                    resultados = new ArrayList<>();
+                    listOLists = new ArrayList<>();
                     StringBuilder resultado = new StringBuilder();
 
                     String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + "dominer340@gmail.com";
@@ -93,10 +107,7 @@ public class MovimientoManual extends AppCompatActivity {
 
                             System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_Codigo +"\n" );
                         }
-
                     }
-
-
 
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -19,7 +19,7 @@ import src.Libraries.FireBase.Utils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
 
     @Override
