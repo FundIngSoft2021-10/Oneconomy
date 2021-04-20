@@ -3,7 +3,6 @@ package src.Controler;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -26,19 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-=======
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
->>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -266,7 +255,7 @@ public class CrearCuenta extends AppCompatActivity {
         return estado;
 
     }
-<<<<<<< HEAD
+
 
     /*
 
@@ -333,9 +322,6 @@ public class CrearCuenta extends AppCompatActivity {
             }
         }
     }*/
-
-=======
->>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 }
 
 

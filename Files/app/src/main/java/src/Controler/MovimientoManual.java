@@ -6,20 +6,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 
+import src.Model.Campos;
+import src.Model.Cliente;
 import src.Model.MensajeGenerico;
+
 
 public class MovimientoManual extends AppCompatActivity {
 
     private static Gson gson = new Gson();
     private static boolean estado = false;
     private static MensajeGenerico mensajeGenerico;
+    private static Cliente cliente;
+    private static Campos campos;
+    private static ArrayList<String> resultados;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,27 +45,64 @@ public class MovimientoManual extends AppCompatActivity {
     public static void recibirGET() throws InterruptedException {
 
         Thread thread = new Thread(new Runnable() {
-            BufferedReader reader = null;
+
+
+
             @Override
             public void run() {
                 try {
+                    ArrayList<ArrayList<String>> listOLists = new ArrayList<>();
+                    StringBuilder resultado = new StringBuilder();
 
-                    URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago");
+                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + "dominer340@gmail.com";
+                    URL url = new URL(tempURL);
+
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    //conn.setDoInput(true);
-                    InputStream stream = conn.getInputStream();
-                    reader = new BufferedReader(new InputStreamReader(stream));
-                    Gson gson = new Gson();
-                    System.out.println("------------Lectura--------------" + reader.toString());
-                    mensajeGenerico = gson.fromJson(reader, MensajeGenerico.class);
+                    
+
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String linea;
+                    // Mientras el BufferedReader se pueda leer, agregar contenido a resultado
+                    while ((linea = rd.readLine()) != null) {
+                        resultado.append(linea);
+                        System.out.println("------------Lectura_recibidatest--------------F" + linea + "Fdominer---dominer340@gmail.\n");
+                    }
+                    // Cerrar el BufferedReader
+                    rd.close();
+
+                    Type collectionType = new TypeToken<Collection<ArrayList>>(){}.getType();
+                    Collection<ArrayList> CollectionString = gson.fromJson(java.lang.String.valueOf(resultado), collectionType);
+
+                    //CollectionString guarda todos los valores de un lista, dentro de otra lista
+
+                    if( CollectionString.isEmpty() == false )
+                    {
+                        for (ArrayList Temp : CollectionString)
+                        {
+                            resultados = new ArrayList<>();
+                            //el primer parametro es quien deberia guardar el ID del metodo de pago
+                            String MP_id = (String) Temp.get(0);
+                            String MP_Codigo = (String) Temp.get(1);
+
+                            //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
+                            resultados.add(MP_id);
+                            resultados.add(MP_Codigo);
+                            listOLists.add(resultados);
+
+                            System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_Codigo +"\n" );
+                        }
+
+                    }
+
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+
+
         });
         thread.start();
         thread.join();
