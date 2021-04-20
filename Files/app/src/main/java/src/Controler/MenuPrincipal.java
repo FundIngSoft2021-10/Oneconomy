@@ -21,4 +21,14 @@ public class MenuPrincipal extends AppCompatActivity {
         Intent i = new Intent(this, Finanzas.class);
         startActivity(i);
     }
+
+    public void MetodosDePago(View view) {
+        Intent i = new Intent(this, MetodosDePago.class);
+        startActivity(i);
+    }
+
+    public void Config(View view) {
+        Intent i = new Intent(this, Configuracion.class);
+        startActivity(i);
+    }
 }

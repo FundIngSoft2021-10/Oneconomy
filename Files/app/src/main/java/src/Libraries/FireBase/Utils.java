@@ -13,6 +13,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import com.google.gson.Gson;
+
 import src.Controler.CrearCuenta;
 import src.Controler.MainActivity;
 import src.Controler.MenuPrincipal;
@@ -22,6 +27,8 @@ public class Utils {
 
     private static final String TAG = "EmailPassword";
     private static FirebaseUser user;
+    private static boolean estado;
+    private static Gson gson = new Gson();
 
     public static FirebaseUser getUser() {
         return user;
@@ -68,7 +75,7 @@ public class Utils {
                             Toast.makeText(context, "Registration - sign up sucess.",
                                     Toast.LENGTH_SHORT).show();
                             try {
-                                if(CrearCuenta.enviarPost(cliente) == true){
+                                if(enviarPost(cliente, "https://striped-weaver-309814.ue.r.appspot.com/ClienteGP")){
                                     //CrearCuenta.Alerta(context, "Su cuenta ha sido creada", "Ya puedes iniciar sesión");
                                     Toast.makeText(context, "Cuenta creada",
                                             Toast.LENGTH_SHORT).show();
@@ -78,17 +85,7 @@ public class Utils {
                                 }
                                 else{
                                     CrearCuenta.Alerta(context, "Error en el servidor", "Por favor intentelo más tarde");
-
-                                    user = mAuth.getCurrentUser();
-                                    user.delete().addOnCompleteListener
-                                            (new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Log.d(TAG, "User account deleted.");
-                                                    }
-                                                }
-                                            });
+                                    eliminarCuenta();
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
@@ -102,6 +99,63 @@ public class Utils {
                         }
                     }
                 });
+    }
+
+    public static void eliminarCuenta(){
+        user.delete().addOnCompleteListener
+                (new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User account deleted.");
+                        }
+                    }
+                });
+    }
+
+    public static boolean enviarPost(Object obj, String targetURL) throws InterruptedException {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                estado = false;
+                try {
+                    URL url = new URL(targetURL);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setRequestMethod("POST");
+                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                    conn.setRequestProperty("Accept","application/json");
+                    conn.setDoOutput(true);
+                    conn.setDoInput(true);
+
+                    String JsonString = gson.toJson(obj);
+
+                    Log.i("JSON", JsonString);
+
+                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
+
+                    os.writeBytes(JsonString);
+
+                    os.flush();
+                    os.close();
+
+                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
+                    Log.i("MSG" , conn.getResponseMessage());
+
+                    if(String.valueOf(conn.getResponseCode()).equals("200")){
+                        estado = true;
+                    }
+                    conn.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+        thread.join();
+        System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
+        return estado;
+
     }
 
 

@@ -40,7 +40,7 @@ public class MovimientoManual extends AppCompatActivity {
             public void run() {
                 try {
 
-                    URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago");
+                    URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/ClienteGP");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");

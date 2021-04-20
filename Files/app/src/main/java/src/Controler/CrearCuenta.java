@@ -3,7 +3,6 @@ package src.Controler;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -26,19 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-=======
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
->>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -214,51 +203,8 @@ public class CrearCuenta extends AppCompatActivity {
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
-    public static boolean enviarPost(Cliente nuevoCliente) throws InterruptedException {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("https://striped-weaver-309814.ue.r.appspot.com/ClienteGP");
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("POST");
-                    conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    conn.setRequestProperty("Accept","application/json");
-                    conn.setDoOutput(true);
-                    conn.setDoInput(true);
 
-                    String ClienteJsonString = gson.toJson(nuevoCliente);
 
-                    Log.i("JSON", ClienteJsonString);
-
-                    DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                    //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                    //os.writeBytes(jCliente.toString());
-                    os.writeBytes(ClienteJsonString);
-
-                    os.flush();
-                    os.close();
-
-                    Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                    Log.i("MSG" , conn.getResponseMessage());
-
-                    if(String.valueOf(conn.getResponseCode()).equals("200")){
-                        estado = true;
-                    }
-                    conn.disconnect();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
-        thread.join();
-        System.out.println("-----------ESTADO---------"+Boolean.toString(estado));
-        return estado;
-
-    }
-<<<<<<< HEAD
 
     /*
 
@@ -324,10 +270,9 @@ public class CrearCuenta extends AppCompatActivity {
                 //
             }
         }
-    }*/
+    }
+    */
 
-=======
->>>>>>> bf58240567639609d6505a7624d2f553bc59aae4
 }
 
 
