@@ -20,7 +20,8 @@ public class MetodosDePago extends AppCompatActivity {
     }
 
     public void agregarMetodo(View view) {
-
+        Intent i = new Intent(this, AgregarMetodoDePago.class);
+        startActivity(i);
     }
 
     public void eliminarMetodo(View view) {
