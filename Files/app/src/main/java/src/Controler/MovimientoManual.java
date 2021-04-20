@@ -41,7 +41,6 @@ public class MovimientoManual extends AppCompatActivity {
         try {
 
             this.recibirGET();
-
             Spinner s = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
             ArrayList<String> opciones = new ArrayList<>();
 
@@ -66,7 +65,8 @@ public class MovimientoManual extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-
+                    resultados = new ArrayList<>();
+                    listOLists = new ArrayList<>();
                     StringBuilder resultado = new StringBuilder();
 
                     String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + "dominer340@gmail.com";
