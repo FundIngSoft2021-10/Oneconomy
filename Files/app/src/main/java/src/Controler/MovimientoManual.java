@@ -29,7 +29,7 @@ public class MovimientoManual extends AppCompatActivity {
     private static Cliente cliente;
     private static Campos campos;
     private static ArrayList<String> resultados;
-    ArrayList<ArrayList<String>> listOLists = new ArrayList<>();
+    private static ArrayList<ArrayList<String>> listOLists = new ArrayList<>();
 
 
     @Override
