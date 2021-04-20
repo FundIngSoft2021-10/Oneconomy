@@ -70,6 +70,7 @@ public class Utils {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            user = mAuth.getCurrentUser();
                             //se muestra mensaje de SUCESS
 
                             Toast.makeText(context, "Registration - sign up sucess.",
@@ -89,9 +90,7 @@ public class Utils {
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
-
                             }
-
                         } else {
                             // If sign up fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
