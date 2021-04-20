@@ -12,11 +12,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import com.google.gson.Gson;
 
 import src.Controler.CrearCuenta;
 import src.Controler.MainActivity;
@@ -107,7 +107,20 @@ public class Utils {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "User account deleted.");
+
+                            boolean bandera = false;
+
+                            try {
+                                bandera = enviarPost(user.getEmail().toString(),"https://striped-weaver-309814.ue.r.appspot.com/ClienteD");
+                                Log.d(TAG, "User account deleted.");
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (bandera == false)
+                            {
+                                //aqui deberia verificar o tomar las medidas necesarias qen caso de que la cunta sea eliminada de firebase pero no de la bse de datos por algun problema con el servidor
+                            }
                         }
                     }
                 });

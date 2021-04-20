@@ -1,13 +1,13 @@
 package src.Controler;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 
@@ -33,7 +33,7 @@ public class Configuracion extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Utils.eliminarCuenta();
-                        //Falta eliminar de la BD
+
                         Toast.makeText(view.getContext(), "Cuenta Eliminada", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(view.getContext(), MainActivity.class);
                         startActivity(i);
