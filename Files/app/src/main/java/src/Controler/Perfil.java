@@ -23,4 +23,7 @@ public class Perfil extends AppCompatActivity {
         nombreUsuario.setText("prueba");
 
     }
+
+
+    
 }

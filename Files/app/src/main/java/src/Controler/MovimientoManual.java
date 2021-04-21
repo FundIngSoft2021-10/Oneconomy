@@ -92,9 +92,8 @@ public class MovimientoManual extends AppCompatActivity {
 
     public void crearMovimientoManual(View view) {
 
-<<<<<<< HEAD
         Movimiento tempMovimiento;
-=======
+
 
 
 
@@ -114,7 +113,7 @@ public class MovimientoManual extends AppCompatActivity {
         if(ingreso.isChecked()){
             ingreso.setChecked(false);
         }
->>>>>>> 02b303f49f02097f22481fe43c187eed5c917c1a
+
     }
 
     public static void recibirGET_Categoria() throws InterruptedException {
