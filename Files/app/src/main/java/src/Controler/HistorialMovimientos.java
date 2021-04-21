@@ -29,29 +29,30 @@ public class HistorialMovimientos extends AppCompatActivity {
         super. onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimientos);
 
+
+
         tableLayout = (TableLayout)findViewById(R.id.tablaMovimientos);
         TableDynamic tableDynamic = new TableDynamic(tableLayout,getApplicationContext());
         tableDynamic.addHeader(header);
+
         try{
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .url("http://3.129.204.152:4200/movements/get/credito/all")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
             tableDynamic.addData(getMovements());
+
         }catch (Exception e){
+            System.out.println("ERROR");
             System.out.println(e.toString());
         }
 
     }
 
     private ArrayList<String[]> getMovements() throws IOException {
-
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-            .url("localhost:4200/movements/get/credito/all")
-            .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            System.out.println(response.body().string());
-        }
-
         StringTokenizer st = new StringTokenizer("hola,mundo|estoy,hablando","|");
         while (st.hasMoreTokens()) {
             StringTokenizer nst = new StringTokenizer(st.nextToken(),",");
