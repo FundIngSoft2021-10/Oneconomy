@@ -2,6 +2,8 @@ package src.Controler;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -149,6 +151,32 @@ public class Finanzas extends AppCompatActivity {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
+            if(response.code()==200){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Los datos han sido guardados correctamente");
+                builder.setTitle("Genial!");
+                builder.setPositiveButton("Gracias", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Algo ha salido mal, intenta de nuevo mas tarde.");
+                builder.setTitle("Ouch!");
+                builder.setPositiveButton("Aish OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
             System.out.println(response.body().string());
         }
 
