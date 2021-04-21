@@ -54,4 +54,8 @@ public class Configuracion extends AppCompatActivity {
 
     }
 
+    public void verPerfil(View view) {
+        Intent i = new Intent(this, Perfil.class);
+        startActivity(i);
+    }
 }

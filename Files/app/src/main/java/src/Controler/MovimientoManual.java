@@ -126,6 +126,7 @@ public class MovimientoManual extends AppCompatActivity {
     }
 
 
+
     public void showDatePickerDialog(View view) {
 
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
@@ -140,4 +141,5 @@ public class MovimientoManual extends AppCompatActivity {
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
 }

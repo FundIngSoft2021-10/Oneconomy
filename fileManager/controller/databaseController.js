@@ -23,10 +23,21 @@ exports.insertMovements = (data, email, extracto) => {
     console.log("Termino de ingresar los datos")
 }
 
+exports.getMovements = (query) => {
+    let promise = new Promise(function (resolve, reject) {
+        connection.query(query, function (err, result, fields) {
+            if (err) reject(err);
+            resolve(result);
+        });
+    });
+
+    return promise
+}
+
 function getCategory(data) {
     let ocio = ["RUMBA", "COMIDA", "RESTAURANTE", "BAR", "DIVERSION", "PARQUE", "PARK"]
     let ingresos = ["ABONO", "NOM", "TRANSFERENCIA DESDE", "INTERESES", "CONSIG"]
-    let facturas = ["PAGO", "CARGA", "CARGUE", "IMPTO", "TRASLADO A", "ZINOBE","TRANSFERENCIA A","EN TELMEX COL"]
+    let facturas = ["PAGO", "CARGA", "CARGUE", "IMPTO", "TRASLADO A", "ZINOBE", "TRANSFERENCIA A", "EN TELMEX COL"]
 
     for (o of ocio)
         if (data[1].indexOf(o) != -1)
