@@ -122,7 +122,6 @@ public class Finanzas extends AppCompatActivity {
                     }
                 }
             }
-
         }
     }
 

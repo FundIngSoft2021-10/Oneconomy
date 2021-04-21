@@ -31,6 +31,7 @@ public class Movimiento {
         IdMetodo_pago = idMetodo_pago;
         this.perfilEmail = perfilEmail;
     }
+    public Movimiento(){}
 
     public int getIdMovimiento() {
         return idMovimiento;
