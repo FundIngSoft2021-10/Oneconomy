@@ -45,11 +45,9 @@ public class HistorialMovimientos extends AppCompatActivity {
                             bank="all";
                         }
                         OkHttpClient client = new OkHttpClient();
-                        System.out.println("http://3.129.204.152:4200/movements/get/"+method+"/"+bank);
                         Request request = new Request.Builder()
                                 .url("http://3.129.204.152:4200/movements/get/"+method+"/"+bank)
                                 .build();
-
                         try(Response response = client.newCall(request).execute()){
                             setMovements(response.body().string());
                         }catch (Exception e){
@@ -60,7 +58,7 @@ public class HistorialMovimientos extends AppCompatActivity {
                 });
                 thread.start();
                 try {
-                    thread.join(4500);
+                    thread.join(10000);
                     if (thread.isAlive()) {
                         System.out.println("Not finished");
                     } else {
@@ -84,7 +82,6 @@ public class HistorialMovimientos extends AppCompatActivity {
         tableDynamic = new TableDynamic(tableLayout,getApplicationContext());
 
 
-
         Spinner dropdownMethod = findViewById(R.id.methodSelector);
         Spinner dropdownBank = findViewById(R.id.bankSelector);
         String[] itemsMethod = new String[]{"Método pago","debito", "credito"};
@@ -101,14 +98,14 @@ public class HistorialMovimientos extends AppCompatActivity {
 
     private void setMovements(String data) {
         rows.removeAll(rows);
+        System.out.println(data);
         StringTokenizer st = new StringTokenizer(data,"|");
         while (st.hasMoreTokens()) {
-            StringTokenizer nst = new StringTokenizer(st.nextToken(),",");
-            while (nst.hasMoreTokens()) {
-                nst.nextToken();
-                String valor = nst.nextToken();
-                rows.add(new String[]{nst.nextToken(),valor,nst.nextToken().substring(0,12)+"..."});
-            }
+            String movement=st.nextToken();
+            String[]dataSplited=movement.split(",");
+            rows.add(new String[]{dataSplited[2],dataSplited[1],dataSplited[3].substring(0,12)+"..."});
+            System.out.println(rows.size());
         }
+
     }
 }

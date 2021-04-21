@@ -50,7 +50,7 @@ public class TableDynamic {
         createHeader();
         String info;
         if(!data.isEmpty()){
-            for(indexR=1;indexR<=header.length;indexR++){
+            for(indexR=1;indexR<=data.size();indexR++){
                 newRow();
                 for (indexC=0;indexC<=header.length;indexC++){
                     newCell();
