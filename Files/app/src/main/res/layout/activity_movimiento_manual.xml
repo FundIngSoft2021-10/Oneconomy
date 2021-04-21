@@ -7,7 +7,7 @@
     tools:context="src.Controler.MovimientoManual">
 
     <Button
-        android:id="@+id/boton_Añadir"
+        android:id="@+id/botonAgregarEntradaManual"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -34,7 +34,7 @@
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxEgresos"
         tools:visibility="visible" />
 
     <TextView
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/descripcion"
+        android:id="@+id/campoValorEntradaManual"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -104,7 +104,7 @@
         app:layout_constraintTop_toTopOf="@+id/crearctxt4" />
 
     <EditText
-        android:id="@+id/Descripcion"
+        android:id="@+id/DescripcionEntradaManual"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -131,7 +131,7 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/buttonFechaNacimiento2"
+        android:id="@+id/botonFechaEntradaManual"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -147,7 +147,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/fecha_seleccionada2"
+        android:id="@+id/fechaEntradaManual"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -157,11 +157,11 @@
         android:inputType="textPersonName"
         android:textIsSelectable="false"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonFechaNacimiento2"
+        app:layout_constraintBottom_toBottomOf="@+id/botonFechaEntradaManual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento2"
-        app:layout_constraintTop_toTopOf="@+id/buttonFechaNacimiento2" />
+        app:layout_constraintStart_toEndOf="@+id/botonFechaEntradaManual"
+        app:layout_constraintTop_toTopOf="@+id/botonFechaEntradaManual" />
 
     <TextView
         android:id="@+id/crearctxt2"
@@ -192,17 +192,17 @@
         tools:srcCompat="@drawable/imagen" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/checkBoxEgresos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Egreso"
-        app:layout_constraintBottom_toBottomOf="@+id/checkIngreso"
-        app:layout_constraintStart_toStartOf="@+id/buttonFechaNacimiento2"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_seleccionada2" />
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxIngreso"
+        app:layout_constraintStart_toStartOf="@+id/botonFechaEntradaManual"
+        app:layout_constraintTop_toBottomOf="@+id/fechaEntradaManual" />
 
     <CheckBox
-        android:id="@+id/checkIngreso"
+        android:id="@+id/checkBoxIngreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -211,8 +211,8 @@
         android:text="Ingreso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_seleccionada2" />
+        app:layout_constraintStart_toEndOf="@+id/checkBoxEgresos"
+        app:layout_constraintTop_toBottomOf="@+id/fechaEntradaManual" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

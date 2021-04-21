@@ -36,18 +36,45 @@ router.get("/get/:method/:entity", async (req, res) => {
 
 function getFecha(date) {
     date = date.toString()
-    let month = "Ene "
+    let month = "01"
 
     switch (date.slice(4, 7)) {
+        case "Feb":
+            month = "02"
+            break
+        case "Mar":
+            month = "03"
+            break
         case "Apr":
-            month = "Abr "
+            month = "04"
+            break
+        case "May":
+            month = "05"
+            break
+        case "Jun":
+            month = "06"
+            break
+        case "Jul":
+            month = "07"
+            break
         case "Aug":
-            month = "Ago "
+            month = "08"
+            break
+        case "Sep":
+            month = "09"
+            break
+        case "Oct":
+            month = "10"
+            break
+        case "Nov":
+            month = "11"
+            break
         case "Dec":
-            month = "Dic "
+            month = "12"
+            break
     }
 
-    return month + date.slice(8,15)
+    return `${date.slice(8, 10)}/${month}/${date.slice(13, 15)}`
 }
 
 module.exports = router

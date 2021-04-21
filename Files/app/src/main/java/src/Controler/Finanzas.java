@@ -38,7 +38,7 @@ import javax.net.ssl.SSLSocketFactory;
 import okhttp3.*;
 
 public class Finanzas extends AppCompatActivity {
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finanzas);
@@ -128,7 +128,10 @@ public class Finanzas extends AppCompatActivity {
         startActivity(i);
     }
 
-
+    public void HistorialMovimientos(View view) {
+        Intent i = new Intent(this, HistorialMovimientos.class);
+        startActivity(i);
+    }
 
     private void sendPost(String name, String value) throws Exception {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

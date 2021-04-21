@@ -21,6 +21,21 @@
         app:layout_constraintTop_toBottomOf="@+id/button7" />
 
     <Button
+        android:id="@+id/btn_filePicker2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#00BCD4"
+        android:onClick="HistorialMovimientos"
+        android:text="Ver movimientos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_filePicker" />
+
+    <Button
         android:id="@+id/button7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
