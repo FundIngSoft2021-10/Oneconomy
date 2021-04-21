@@ -96,7 +96,6 @@ public class MovimientoManual extends AppCompatActivity {
     public void crearMovimientoManual(View view) throws ParseException, InterruptedException {
         Movimiento tempMovimiento = new Movimiento();
 
-<<<<<<< HEAD
         CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIngreso);
         CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
         EditText fecha = (EditText) findViewById(R.id.fechaEntradaManual);
@@ -125,8 +124,6 @@ public class MovimientoManual extends AppCompatActivity {
                     break;
                 }
             }
-=======
->>>>>>> a73e8003c3aba8b1fbd6bdbebd517ad03fa98e2b
 
             String categoriaS = String.valueOf(categoria.getSelectedItem().toString());
             for(ArrayList<String> actual : listOListsCategoria){
@@ -167,10 +164,7 @@ public class MovimientoManual extends AppCompatActivity {
         if(ingreso.isChecked()){
             ingreso.setChecked(false);
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> a73e8003c3aba8b1fbd6bdbebd517ad03fa98e2b
     }
 
     public static void recibirGET_Categoria() throws InterruptedException {
@@ -303,20 +297,9 @@ public class MovimientoManual extends AppCompatActivity {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
 
-<<<<<<< HEAD
-                EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
-                fecha_seleccionada.setText(selectedDate);
-=======
-//                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
-//                fecha_seleccionada.setText(selectedDate);
-
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fechaEntradaManual);
                 fecha_seleccionada.setText(selectedDate);
-<<<<<<< HEAD
-=======
 
->>>>>>> 418e11e00371bc2f524ef343011416e2224e5f4c
->>>>>>> a73e8003c3aba8b1fbd6bdbebd517ad03fa98e2b
             }
         });
 
