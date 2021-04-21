@@ -43,6 +43,9 @@ public class Finanzas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finanzas);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Button btn_filePicker = (Button) findViewById(R.id.btn_filePicker);
         btn_filePicker.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

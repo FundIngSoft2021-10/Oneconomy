@@ -49,18 +49,22 @@ public class TableDynamic {
         tableLayout.addView(tableRow);
     }
     private void createDataTable(){
+        tableLayout.removeAllViews();
         String info;
-        for(indexR=1;indexR<=header.length;indexR++){
-            newRow();
-            for (indexC=0;indexC<=header.length;indexC++){
-                newCell();
-                String[] columns = data.get(indexR-1);
-                info = (indexC<columns.length)?columns[indexC]:"";
-                textCell.setText(info);
-                tableRow.addView(textCell,newTableRowParams());
+        if(!data.isEmpty()){
+            for(indexR=1;indexR<=header.length;indexR++){
+                newRow();
+                for (indexC=0;indexC<=header.length;indexC++){
+                    newCell();
+                    String[] columns = data.get(indexR-1);
+                    info = (indexC<columns.length)?columns[indexC]:"";
+                    textCell.setText(info);
+                    tableRow.addView(textCell,newTableRowParams());
+                }
+                tableLayout.addView(tableRow);
             }
-            tableLayout.addView(tableRow);
         }
+
     }
 
 

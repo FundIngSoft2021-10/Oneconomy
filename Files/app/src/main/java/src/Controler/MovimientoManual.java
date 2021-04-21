@@ -259,17 +259,13 @@ public class MovimientoManual extends AppCompatActivity {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
 
-<<<<<<< HEAD
-                EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
-                fecha_seleccionada.setText(selectedDate);
-=======
+
 //                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
 //                fecha_seleccionada.setText(selectedDate);
 
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
                 fecha_seleccionada.setText(selectedDate);
 
->>>>>>> 418e11e00371bc2f524ef343011416e2224e5f4c
             }
         });
 
