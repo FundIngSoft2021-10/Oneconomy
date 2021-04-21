@@ -1,7 +1,12 @@
 package src.Controler;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,18 +36,29 @@ public class Perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
-
-        TextView nombre = (TextView) findViewById(R.id.textoNombre);
-        TextView nombreUsuario = (TextView) findViewById(R.id.textoNombreUsuario);
-
         try {
             recibirGET_Perfil();
+            TextView nombreUsuario = (TextView) findViewById(R.id.textoNombreUsuario);
+            TextView nombre = (TextView) findViewById(R.id.textoNombre);
+            TextView apellido = (TextView) findViewById(R.id.textoApellido);
+            TextView cedula = (TextView) findViewById(R.id.textoCedula);
+            TextView fecha = (TextView) findViewById(R.id.textoFechaN);
+            TextView correo = (TextView) findViewById(R.id.textoCorreo);
+
+            correo.setText(listOListsPerfil.get(0).get(0));
+            nombreUsuario.setText(listOListsPerfil.get(0).get(1));
+            nombre.setText(listOListsPerfil.get(0).get(2));
+            apellido.setText(listOListsPerfil.get(0).get(3));
+            fecha.setText(listOListsPerfil.get(0).get(4));
+            cedula.setText(listOListsPerfil.get(0).get(5));
+
         } catch (InterruptedException e) {
             e.printStackTrace();
+            Toast.makeText(this , "Error accediendo a la BD",
+                    Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, Configuracion.class);
+            this.startActivity(i);
         }
-
-
-
     }
 
 
@@ -58,7 +74,7 @@ public class Perfil extends AppCompatActivity {
                     listOListsPerfil = new ArrayList<>();
                     StringBuilder resultado = new StringBuilder();
 
-                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?ClienteGP=" + Utils.getUser().getEmail() ;
+                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/ClienteGP?CC=" + Utils.getUser().getEmail() ;
                     URL url = new URL(tempURL);
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -89,10 +105,10 @@ public class Perfil extends AppCompatActivity {
                             //el primer parametro es quien deberia guardar el ID del metodo de pago
                             String email = (String) Temp.get(0);
                             String nombre_usuario = (String) Temp.get(1);
-                            String nombre = (String) Temp.get(1);
-                            String apellido = (String) Temp.get(1);
-                            String fecha = (String) Temp.get(1);
-                            String cedula = (String) Temp.get(1);
+                            String nombre = (String) Temp.get(2);
+                            String apellido = (String) Temp.get(3);
+                            String fecha = (String) Temp.get(4);
+                            String cedula = (String) Temp.get(5);
 
 
 

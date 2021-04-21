@@ -96,8 +96,6 @@ public class MovimientoManual extends AppCompatActivity {
     public void crearMovimientoManual(View view) throws ParseException, InterruptedException {
         Movimiento tempMovimiento = new Movimiento();
 
-
-
         CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIngreso);
         CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
         EditText fecha = (EditText) findViewById(R.id.fechaEntradaManual);
@@ -126,7 +124,6 @@ public class MovimientoManual extends AppCompatActivity {
                     break;
                 }
             }
-
 
             String categoriaS = String.valueOf(categoria.getSelectedItem().toString());
             for(ArrayList<String> actual : listOListsCategoria){
