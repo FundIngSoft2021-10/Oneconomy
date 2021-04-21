@@ -27,6 +27,7 @@ import src.Libraries.FireBase.Utils;
 import src.Model.Campos;
 import src.Model.Cliente;
 import src.Model.MensajeGenerico;
+import src.Model.Movimiento;
 
 
 public class MovimientoManual extends AppCompatActivity {
@@ -73,7 +74,7 @@ public class MovimientoManual extends AppCompatActivity {
 
     public void crearMovimientoManual(View view) {
 
-
+        Movimiento tempMovimiento;
     }
 
     public static void recibirGET_Categoria() throws InterruptedException {
