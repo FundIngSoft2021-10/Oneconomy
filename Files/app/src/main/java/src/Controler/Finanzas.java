@@ -2,6 +2,8 @@ package src.Controler;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -42,6 +44,9 @@ public class Finanzas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finanzas);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         Button btn_filePicker = (Button) findViewById(R.id.btn_filePicker);
         btn_filePicker.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +151,32 @@ public class Finanzas extends AppCompatActivity {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
+            if(response.code()==200){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Los datos han sido guardados correctamente");
+                builder.setTitle("Genial!");
+                builder.setPositiveButton("Gracias", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Algo ha salido mal, intenta de nuevo mas tarde.");
+                builder.setTitle("Ouch!");
+                builder.setPositiveButton("Aish OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
             System.out.println(response.body().string());
         }
 

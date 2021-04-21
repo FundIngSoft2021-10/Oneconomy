@@ -22,12 +22,9 @@ public class TableDynamic {
         this.tableLayout = tableLayout;
         this.context = context;
     }
-    public void addHeader(String[] header){
-        this.header=header;
-        createHeader();
-    }
-    public void addData (ArrayList<String[]> data){
+    public void addData (ArrayList<String[]> data,String[] header){
         this.data=data;
+        this.header=header;
         createDataTable();
     }
     private void newRow(){
@@ -49,18 +46,23 @@ public class TableDynamic {
         tableLayout.addView(tableRow);
     }
     private void createDataTable(){
+        tableLayout.removeAllViews();
+        createHeader();
         String info;
-        for(indexR=1;indexR<=header.length;indexR++){
-            newRow();
-            for (indexC=0;indexC<=header.length;indexC++){
-                newCell();
-                String[] columns = data.get(indexR-1);
-                info = (indexC<columns.length)?columns[indexC]:"";
-                textCell.setText(info);
-                tableRow.addView(textCell,newTableRowParams());
+        if(!data.isEmpty()){
+            for(indexR=1;indexR<=data.size();indexR++){
+                newRow();
+                for (indexC=0;indexC<=header.length;indexC++){
+                    newCell();
+                    String[] columns = data.get(indexR-1);
+                    info = (indexC<columns.length)?columns[indexC]:"";
+                    textCell.setText(info);
+                    tableRow.addView(textCell,newTableRowParams());
+                }
+                tableLayout.addView(tableRow);
             }
-            tableLayout.addView(tableRow);
         }
+
     }
 
 

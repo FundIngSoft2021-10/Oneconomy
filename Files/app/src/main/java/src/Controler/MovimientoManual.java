@@ -297,7 +297,9 @@ public class MovimientoManual extends AppCompatActivity {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
 
+
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fechaEntradaManual);
+
                 fecha_seleccionada.setText(selectedDate);
 
             }
