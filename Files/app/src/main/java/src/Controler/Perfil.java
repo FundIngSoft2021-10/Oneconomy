@@ -19,4 +19,7 @@ public class Perfil extends AppCompatActivity {
         TextView nombreUsuario = (TextView) findViewById(R.id.textoNombreUsuario);
 
     }
+
+
+
 }
