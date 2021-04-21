@@ -1,7 +1,11 @@
 package src.Controler;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +22,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import src.Libraries.DatePickerFragment;
 import src.Model.Campos;
 import src.Model.Cliente;
 import src.Model.MensajeGenerico;
@@ -118,5 +123,21 @@ public class MovimientoManual extends AppCompatActivity {
         });
         thread.start();
         thread.join();
+    }
+
+
+    public void showDatePickerDialog(View view) {
+
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                final String selectedDate = day + "/" + (month+1) + "/" + year;
+                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
+                fecha_seleccionada.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
