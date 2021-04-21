@@ -1,6 +1,7 @@
 package src.Controler;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -9,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,8 +23,12 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Random;
 
 import src.Libraries.DatePickerFragment;
 import src.Libraries.FireBase.Utils;
@@ -53,10 +59,7 @@ public class MovimientoManual extends AppCompatActivity {
         try {
 
             this.recibirGET_MetodoPago();
-
             this.recibirGET_Categoria();
-
-
 
             Spinner s = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
             ArrayList<String> opciones = new ArrayList<>();
@@ -90,17 +93,64 @@ public class MovimientoManual extends AppCompatActivity {
         }
     }
 
-    public void crearMovimientoManual(View view) {
+    public void crearMovimientoManual(View view) throws ParseException, InterruptedException {
+        Movimiento tempMovimiento = new Movimiento();
 
-<<<<<<< HEAD
-        Movimiento tempMovimiento;
-=======
+        CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIngreso);
+        CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
+        EditText fecha = (EditText) findViewById(R.id.fechaEntradaManual);
+        EditText valor = (EditText) findViewById(R.id.campoValorEntradaManual);
+        EditText descripcion = (EditText) findViewById(R.id.DescripcionEntradaManual);
+        Spinner metodo = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
+        Spinner categoria = (Spinner) findViewById(R.id.desplegable_Categoria);
 
+        if((!egreso.isChecked() && !ingreso.isChecked()) || fecha.getText().toString().isEmpty() || valor.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty()){
+            CrearCuenta.Alerta(view.getContext(), "Error al agregar movimiento", "\n+ Existen parametros sin llenar");
+        }
+        else{
+            tempMovimiento.setValue(Integer.parseInt(valor.getText().toString()));
+            if(egreso.isChecked())
+                tempMovimiento.setValue(tempMovimiento.getValue()*(-1));
 
+            Date date = null;
+            String fechaS = String.valueOf(fecha.getText());
+            date = new SimpleDateFormat("dd/MM/yyyy").parse(fechaS);
+            tempMovimiento.setFecha_Movimiento(date);
 
+            String metodoS = String.valueOf(metodo.getSelectedItem().toString());
+            for(ArrayList<String> actual : listOListsMetodos_Pago){
+                if(actual.get(1).contains(metodoS)){
+                    tempMovimiento.setIdMetodo_pago(Integer.parseInt(actual.get(0)));
+                    break;
+                }
+            }
+
+            String categoriaS = String.valueOf(categoria.getSelectedItem().toString());
+            for(ArrayList<String> actual : listOListsCategoria){
+                if(actual.get(1).contains(categoriaS)){
+                    tempMovimiento.setIdCategoria(Integer.parseInt(actual.get(0)));
+                    break;
+                }
+            }
+
+            tempMovimiento.setDescripcion(String.valueOf(descripcion.getText()));
+
+            tempMovimiento.setPerfilEmail(Utils.getUser().getEmail());
+
+            Random random = new Random();
+            tempMovimiento.setIdMovimiento(random.nextInt(99999999));
+
+            if(Utils.enviarPost(tempMovimiento, "https://striped-weaver-309814.ue.r.appspot.com/movimientoST")){
+                Toast.makeText(view.getContext(), "Movimiento agregado correctamente",
+                        Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(view.getContext(), Finanzas.class);
+                view.getContext().startActivity(i);
+            }
+            else{
+                CrearCuenta.Alerta(view.getContext(), "Error al añadir movimiento", "\nPor favor intente más tarde");
+            }
+        }
     }
-
-
 
     public void checkIngreso(View view){
         CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
@@ -114,7 +164,7 @@ public class MovimientoManual extends AppCompatActivity {
         if(ingreso.isChecked()){
             ingreso.setChecked(false);
         }
->>>>>>> 02b303f49f02097f22481fe43c187eed5c917c1a
+
     }
 
     public static void recibirGET_Categoria() throws InterruptedException {
@@ -179,18 +229,6 @@ public class MovimientoManual extends AppCompatActivity {
         thread.join();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     public static void recibirGET_MetodoPago() throws InterruptedException {
 
         Thread thread = new Thread(new Runnable() {
@@ -245,17 +283,11 @@ public class MovimientoManual extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
             }
-
-
         });
         thread.start();
         thread.join();
     }
-
-
 
     public void showDatePickerDialog(View view) {
 
@@ -268,14 +300,11 @@ public class MovimientoManual extends AppCompatActivity {
 //                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
 //                fecha_seleccionada.setText(selectedDate);
 
-                EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
+                EditText fecha_seleccionada = (EditText) findViewById(R.id.fechaEntradaManual);
                 fecha_seleccionada.setText(selectedDate);
-
             }
         });
 
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
-
 }
