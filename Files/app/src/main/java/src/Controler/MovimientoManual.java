@@ -3,7 +3,9 @@ package src.Controler;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -45,6 +47,7 @@ public class MovimientoManual extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimiento_manual);
         try {
@@ -67,6 +70,21 @@ public class MovimientoManual extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             s.setAdapter(adapter);
 
+            //------------------------Categorías-----------------------
+
+            Spinner c = (Spinner) findViewById(R.id.desplegable_Categoria);
+            ArrayList<String> opciones2 = new ArrayList<>();
+
+            for(ArrayList<String> actual : listOListsCategoria){
+                opciones2.add(actual.get(1));
+                System.out.println("*********" + actual.get(0) + ":::" + actual.get(1) + "***********");
+            }
+
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones2);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            c.setAdapter(adapter2);
+
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -74,7 +92,29 @@ public class MovimientoManual extends AppCompatActivity {
 
     public void crearMovimientoManual(View view) {
 
+<<<<<<< HEAD
         Movimiento tempMovimiento;
+=======
+
+
+
+    }
+
+
+
+    public void checkIngreso(View view){
+        CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
+        if(egreso.isChecked()){
+            egreso.setChecked(false);
+        }
+    }
+
+    public void checkEgreso(View view){
+        CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIngreso);
+        if(ingreso.isChecked()){
+            ingreso.setChecked(false);
+        }
+>>>>>>> 02b303f49f02097f22481fe43c187eed5c917c1a
     }
 
     public static void recibirGET_Categoria() throws InterruptedException {
@@ -207,8 +247,6 @@ public class MovimientoManual extends AppCompatActivity {
                 }
 
 
-
-
             }
 
 
@@ -226,13 +264,13 @@ public class MovimientoManual extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
-<<<<<<< HEAD
+
 //                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
 //                fecha_seleccionada.setText(selectedDate);
-=======
+
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fecha_seleccionada);
                 fecha_seleccionada.setText(selectedDate);
->>>>>>> 1949cd9b44440408081ba7d3580a06d979bbac7f
+
             }
         });
 
