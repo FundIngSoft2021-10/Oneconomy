@@ -7,7 +7,7 @@
     tools:context="src.Controler.MovimientoManual">
 
     <Button
-        android:id="@+id/boton_Añadir"
+        android:id="@+id/botonAgregarEntradaManual"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -26,76 +26,102 @@
     <TextView
         android:id="@+id/crearctxt4"
         android:layout_width="100dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Valor"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFechaNacimiento2"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxEgresos"
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/crearctxt5"
+        android:id="@+id/TextCategoria"
         android:layout_width="100dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Categoria"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crearctxt3"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/crearctxt6"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:gravity="center"
         android:text="Descripción"
         android:textSize="18sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/boton_Añadir"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crearctxt3"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/TextCategoria"
         tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/Desplegable_Metodo_Pago"
-        android:layout_width="212dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/crearctxt3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toEndOf="@+id/crearctxt3"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
+        app:layout_constraintTop_toTopOf="@+id/crearctxt3" />
+
+    <Spinner
+        android:id="@+id/desplegable_Categoria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/TextCategoria"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/crearctxt3"
+        app:layout_constraintTop_toTopOf="@+id/TextCategoria"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/descripcion"
-        android:layout_width="214dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/campoValorEntradaManual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/crearctxt4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.604"
         app:layout_constraintStart_toEndOf="@+id/crearctxt4"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toTopOf="@+id/crearctxt4" />
 
     <EditText
-        android:id="@+id/Descripcion"
-        android:layout_width="211dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="28dp"
+        android:id="@+id/DescripcionEntradaManual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/boton_Añadir"
+        app:layout_constraintBottom_toBottomOf="@+id/crearctxt6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.595"
-        app:layout_constraintStart_toEndOf="@+id/crearctxt5"
-        app:layout_constraintTop_toBottomOf="@+id/Desplegable_Metodo_Pago"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintStart_toEndOf="@+id/TextCategoria"
+        app:layout_constraintTop_toTopOf="@+id/crearctxt6" />
 
     <TextView
         android:id="@+id/crearctxt3"
         android:layout_width="98dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Método de pago"
         android:textSize="18sp"
@@ -105,36 +131,37 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/buttonFechaNacimiento2"
+        android:id="@+id/botonFechaEntradaManual"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
         android:background="#03A9F4"
         android:backgroundTint="#03A9F4"
         android:backgroundTintMode="add"
         android:onClick="showDatePickerDialog"
         android:text="Fecha"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/fecha_seleccionada2"
-        android:layout_width="216dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="91dp"
+        android:id="@+id/fechaEntradaManual"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:editable="false"
         android:ellipsize="start"
         android:ems="10"
         android:inputType="textPersonName"
         android:textIsSelectable="false"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/botonFechaEntradaManual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintStart_toEndOf="@+id/buttonFechaNacimiento2"
-        app:layout_constraintTop_toBottomOf="@+id/crearctxt2" />
+        app:layout_constraintStart_toEndOf="@+id/botonFechaEntradaManual"
+        app:layout_constraintTop_toTopOf="@+id/botonFechaEntradaManual" />
 
     <TextView
         android:id="@+id/crearctxt2"
@@ -152,37 +179,40 @@
 
     <ImageView
         android:id="@+id/logo4"
-        android:layout_width="182dp"
-        android:layout_height="107dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/crearctxt2"
+        android:layout_width="446dp"
+        android:layout_height="365dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/crearctxt2"
         app:srcCompat="@drawable/imagen"
         tools:srcCompat="@drawable/imagen" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="0dp"
+        android:id="@+id/checkBoxEgresos"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:text="Egreso"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_seleccionada2" />
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxIngreso"
+        app:layout_constraintStart_toStartOf="@+id/botonFechaEntradaManual"
+        app:layout_constraintTop_toBottomOf="@+id/fechaEntradaManual" />
 
     <CheckBox
-        android:id="@+id/checkIngreso"
-        android:layout_width="89dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="28dp"
+        android:id="@+id/checkBoxIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:text="Ingreso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@+id/fecha_seleccionada2" />
+        app:layout_constraintStart_toEndOf="@+id/checkBoxEgresos"
+        app:layout_constraintTop_toBottomOf="@+id/fechaEntradaManual" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
