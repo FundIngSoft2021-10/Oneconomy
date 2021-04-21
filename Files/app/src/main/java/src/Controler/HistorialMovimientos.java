@@ -82,7 +82,7 @@ public class HistorialMovimientos extends AppCompatActivity {
 
         tableLayout = (TableLayout)findViewById(R.id.tablaMovimientos);
         tableDynamic = new TableDynamic(tableLayout,getApplicationContext());
-        tableDynamic.addHeader(header);
+
 
 
         Spinner dropdownMethod = findViewById(R.id.methodSelector);
@@ -96,7 +96,7 @@ public class HistorialMovimientos extends AppCompatActivity {
 
     }
     private void loadTable(){
-        tableDynamic.addData(rows);
+        tableDynamic.addData(rows,header);
     }
 
     private void setMovements(String data) {
