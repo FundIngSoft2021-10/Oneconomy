@@ -134,8 +134,8 @@ public class MovimientoManual extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
                 final String selectedDate = day + "/" + (month+1) + "/" + year;
-                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
-                fecha_seleccionada.setText(selectedDate);
+//                EditText fecha_seleccionada = (EditText) findViewById(R.id.);
+//                fecha_seleccionada.setText(selectedDate);
             }
         });
 

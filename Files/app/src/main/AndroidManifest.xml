@@ -19,6 +19,7 @@
         <activity android:name="src.Controler.Configuracion" />
         <activity android:name="src.Controler.Pruebas_visuales" />
         <activity android:name="src.Controler.MovimientoManual" />
+        <activity android:name="src.Controler.HistorialMovimientos" />
         <activity android:name="src.Controler.Finanzas">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
