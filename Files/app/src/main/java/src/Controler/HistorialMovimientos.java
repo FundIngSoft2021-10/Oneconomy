@@ -50,9 +50,10 @@ public class HistorialMovimientos extends AppCompatActivity {
                                 .url("http://3.129.204.152:4200/movements/get/"+method+"/"+bank+"/"+Utils.getUser().getEmail())
                                 .build();
                         try(Response response = client.newCall(request).execute()){
+                            System.out.println(response.body().string());
                             setMovements(response.body().string());
                         }catch (Exception e){
-                            System.out.println("ERROR");
+                            System.out.println("ERROR TRAYENDO DATOS DE LA BASE DE DATOS");
                             System.out.println(e.toString());
                         }
                     }
@@ -105,7 +106,7 @@ public class HistorialMovimientos extends AppCompatActivity {
                         .url("http://3.129.204.152:4200/movements/get/methods/"+Utils.getUser().getEmail())
                         .build();
                 Request requestEntities = new Request.Builder()
-                        .url("http://3.129.204.152:4200/movements/get/entities"+Utils.getUser().getEmail())
+                        .url("http://3.129.204.152:4200/movements/get/entities/"+Utils.getUser().getEmail())
                         .build();
 
                 try {
@@ -124,14 +125,14 @@ public class HistorialMovimientos extends AppCompatActivity {
 
                     StringTokenizer et = new StringTokenizer(responseEntities.body().string(),",");
                     while (et.hasMoreTokens()) {
-                        itemsMethod.add(et.nextToken());
+                        itemsBank.add(et.nextToken());
                     }
 
                     String[] itemsMethodFinal = new String[itemsMethod.size()];
                     String[] itemsBankFinal = new String[itemsBank.size()];
 
                     itemsMethodFinal=itemsMethod.toArray(itemsMethodFinal);
-                    itemsBankFinal=itemsMethod.toArray(itemsBankFinal);
+                    itemsBankFinal=itemsBank.toArray(itemsBankFinal);
 
                     ArrayAdapter<String> adapterMethod = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, itemsMethodFinal);
                     ArrayAdapter<String> adapterBank = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, itemsBankFinal);

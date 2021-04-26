@@ -5,7 +5,7 @@ const dbController = require('./databaseController')
 
 router.use(bodyParser.json());
 
-router.get("/get:method/:entity/:email", async (req, res) => {
+router.get("/get/:method/:entity/:email", async (req, res) => {
     console.log("Recibio solicitud de consulta movimientos")
     let query = `
                 Select m.idMovimiento,m.valor,m.fecha,m.descripcion 
