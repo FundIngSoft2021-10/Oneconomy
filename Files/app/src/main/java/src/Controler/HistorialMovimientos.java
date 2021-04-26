@@ -47,10 +47,9 @@ public class HistorialMovimientos extends AppCompatActivity {
                         }
                         OkHttpClient client = new OkHttpClient();
                         Request request = new Request.Builder()
-                                .url("http://3.129.204.152:4200/movements/get/"+method+"/"+bank+"/"+Utils.getUser().getEmail())
+                                .url("http://3.129.204.152:4200/movements/get/"+method.toLowerCase()+"/"+bank.toLowerCase()+"/"+Utils.getUser().getEmail())
                                 .build();
                         try(Response response = client.newCall(request).execute()){
-                            System.out.println(response.body().string());
                             setMovements(response.body().string());
                         }catch (Exception e){
                             System.out.println("ERROR TRAYENDO DATOS DE LA BASE DE DATOS");
@@ -60,7 +59,7 @@ public class HistorialMovimientos extends AppCompatActivity {
                 });
                 thread.start();
                 try {
-                    thread.join(3000);
+                    thread.join(10000);
                     if (thread.isAlive()) {
                         System.out.println("Not finished");
                     } else {
@@ -90,9 +89,7 @@ public class HistorialMovimientos extends AppCompatActivity {
             String movement=st.nextToken();
             String[]dataSplited=movement.split(",");
             rows.add(new String[]{dataSplited[2],dataSplited[1],dataSplited[3].substring(0,12)+"..."});
-            System.out.println(rows.size());
         }
-
     }
 
     private void fillDropdowns(HistorialMovimientos ctx){
@@ -139,17 +136,14 @@ public class HistorialMovimientos extends AppCompatActivity {
                     dropdownMethod.setAdapter(adapterMethod);
                     dropdownBank.setAdapter(adapterBank);
                 }catch (Exception e){
-                    System.out.println("ERROR");
+                    System.out.println("ERROR LLENANDO LOS DROPDOWNS");
                     System.out.println(e.toString());
                 }
             }
         });
         thread.start();
         try {
-            thread.join(10000);
-            if (thread.isAlive()) {
-                System.out.println("Not finished");
-            }
+            thread.join(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

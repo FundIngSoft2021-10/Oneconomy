@@ -62,9 +62,7 @@ public class TableDynamic {
                 tableLayout.addView(tableRow);
             }
         }
-
     }
-
 
     private TableRow.LayoutParams newTableRowParams(){
         TableRow.LayoutParams params= new TableRow.LayoutParams();
