@@ -60,7 +60,7 @@ public class HistorialMovimientos extends AppCompatActivity {
                 });
                 thread.start();
                 try {
-                    thread.join(10000);
+                    thread.join(3000);
                     if (thread.isAlive()) {
                         System.out.println("Not finished");
                     } else {

@@ -26,7 +26,7 @@ router.get("/get/:method/:entity/:email", async (req, res) => {
     else
         query += ` and e.nombre_entidad = '${req.params.entity}'`
 
-    query+= `and m.Perfil_email = '${req.params.email}'`
+    query+= ` and m.Perfil_email = '${req.params.email}'`
     dbController.getMovements(query).then(data => {
         let response = ''
         for (d of data)
