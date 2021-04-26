@@ -5,7 +5,7 @@ const dbController = require('./databaseController')
 
 router.use(bodyParser.json());
 
-router.get("/get/:method/:entity", async (req, res) => {
+router.get("/get:method/:entity/:email", async (req, res) => {
     console.log("Recibio solicitud de consulta movimientos")
     let query = `
                 Select m.idMovimiento,m.valor,m.fecha,m.descripcion 
@@ -26,11 +26,44 @@ router.get("/get/:method/:entity", async (req, res) => {
     else
         query += ` and e.nombre_entidad = '${req.params.entity}'`
 
+    query+= `and m.Perfil_email = '${req.params.email}'`
     dbController.getMovements(query).then(data => {
         let response = ''
         for (d of data)
             response += `${d.idMovimiento},${d.valor},${getFecha(d.fecha)},${d.descripcion}|`
-        res.send(response)
+        res.status(200).send(response)
+    });
+});
+
+router.get("/get/methods/:email", (req,res) =>{
+    query= `select DISTINCT (t.tipo) from MetodoDePago mdp 
+            inner join Tipo t 
+            on t.idTipo = mdp.Tipo_idTipo 
+            where  ISNULL(mdp.Perfil_email) or 
+            mdp.Perfil_email ='${req.params.email}'`
+
+    dbController.getMovements(query).then(data => {
+        let response = ''
+        for (d of data)
+            response += `${d.tipo},`
+        res.status(200).send(response)
+    });
+});
+
+router.get("/get/entities/:email", (req,res) =>{
+    query= `select DISTINCT (e.nombre_entidad) entidad from MetodoDePago mdp 
+            inner join Tipo t 
+            on t.idTipo = mdp.Tipo_idTipo 
+            inner join Entidad e 
+            on mdp.Entidad_idBanco = e.idBanco 
+            where  ISNULL(mdp.Perfil_email) or 
+            mdp.Perfil_email ='${req.params.email}'`
+
+    dbController.getMovements(query).then(data => {
+        let response = ''
+        for (d of data)
+            response += `${d.entidad},`
+        res.status(200).send(response)
     });
 });
 

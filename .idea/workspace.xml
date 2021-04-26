@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d61c183-2ad2-47e7-a347-58c686b2ad2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Files/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Files/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileManager/node_modules/.bin/json5" beforeDir="false" afterPath="$PROJECT_DIR$/fileManager/node_modules/.bin/json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileManager/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/fileManager/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileManager/node_modules/.bin/pdf2json" beforeDir="false" afterPath="$PROJECT_DIR$/fileManager/node_modules/.bin/pdf2json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileManager/node_modules/pdf2table/node_modules/.bin/pdf2json" beforeDir="false" afterPath="$PROJECT_DIR$/fileManager/node_modules/pdf2table/node_modules/.bin/pdf2json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +46,11 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="444" y="204" key="FileChooserDialogImpl" timestamp="1618758283893">
+    <state x="444" y="204" key="FileChooserDialogImpl" timestamp="1619398698334">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="740" y="258" key="FileChooserDialogImpl/-1920.0.1920.1040/0.0.2560.1040@0.0.2560.1040" timestamp="1617479385014" />
-    <state x="444" y="204" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618758283893" />
+    <state x="444" y="204" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1619398698334" />
     <state x="475" y="145" width="586" height="534" key="find.popup" timestamp="1618758176444">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
