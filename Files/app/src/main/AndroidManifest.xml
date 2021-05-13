@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oneconomy">
-        <activity android:name="src.Controler.Perfil"></activity>
+        <activity android:name="src.Controler.Mis_Informes"></activity>
+        <activity android:name="src.Controler.Perfil" />
         <activity android:name="src.Controler.AgregarMetodoDePago" />
         <activity android:name="src.Controler.MetodosDePago" />
         <activity android:name="src.Controler.Configuracion" />

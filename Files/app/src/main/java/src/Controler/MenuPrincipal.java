@@ -1,13 +1,12 @@
 package src.Controler;
 
-import com.example.oneconomy.R;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import src.Libraries.FireBase.Utils;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.oneconomy.R;
 
 public class MenuPrincipal extends AppCompatActivity {
 
@@ -29,6 +28,12 @@ public class MenuPrincipal extends AppCompatActivity {
 
     public void Config(View view) {
         Intent i = new Intent(this, Configuracion.class);
+        startActivity(i);
+    }
+
+
+    public void mis_informes(View view) {
+        Intent i = new Intent(this, Mis_Informes.class);
         startActivity(i);
     }
 }

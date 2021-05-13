@@ -104,7 +104,8 @@ public class MovimientoManual extends AppCompatActivity {
         Spinner metodo = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
         Spinner categoria = (Spinner) findViewById(R.id.desplegable_Categoria);
 
-        if((!egreso.isChecked() && !ingreso.isChecked()) || fecha.getText().toString().isEmpty() || valor.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty()){
+        if((!egreso.isChecked() && !ingreso.isChecked()) || fecha.getText().toString().isEmpty() || valor.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty())
+        {
             CrearCuenta.Alerta(view.getContext(), "Error al agregar movimiento", "\n+ Existen parametros sin llenar");
         }
         else{
@@ -269,14 +270,14 @@ public class MovimientoManual extends AppCompatActivity {
                             resultadosMetodos_Pago = new ArrayList<>();
                             //el primer parametro es quien deberia guardar el ID del metodo de pago
                             String MP_id = (String) Temp.get(0);
-                            String MP_Codigo = (String) Temp.get(1);
+                            String MP_nombre = (String) Temp.get(1);
 
                             //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
                             resultadosMetodos_Pago.add(MP_id);
-                            resultadosMetodos_Pago.add(MP_Codigo);
+                            resultadosMetodos_Pago.add(MP_nombre);
                             listOListsMetodos_Pago.add(resultadosMetodos_Pago);
 
-                            System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_Codigo +"\n" );
+                            System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_nombre +"\n" );
                         }
                     }
 
