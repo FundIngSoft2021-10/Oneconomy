@@ -24,6 +24,7 @@ public class Pruebas_visuales extends AppCompatActivity {
         Gson gson = new Gson();
         System.out.println("------------Lectura--------------" + reader.toString());
 */
+
     }
 
 
