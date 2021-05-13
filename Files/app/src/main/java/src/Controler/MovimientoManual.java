@@ -63,8 +63,8 @@ public class MovimientoManual extends AppCompatActivity {
 
             Spinner s = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
             ArrayList<String> opciones = new ArrayList<>();
-
-            for(ArrayList<String> actual : listOListsMetodos_Pago){
+            opciones.add(" ---- ");
+            for (ArrayList<String> actual : listOListsMetodos_Pago) {
                 opciones.add(actual.get(1));
                 System.out.println("*********" + actual.get(0) + ":::" + actual.get(1) + "***********");
             }
@@ -72,13 +72,14 @@ public class MovimientoManual extends AppCompatActivity {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             s.setAdapter(adapter);
+            s.setSelection(0);
 
             //------------------------Categorías-----------------------
 
             Spinner c = (Spinner) findViewById(R.id.desplegable_Categoria);
             ArrayList<String> opciones2 = new ArrayList<>();
-
-            for(ArrayList<String> actual : listOListsCategoria){
+            opciones2.add(" ---- ");
+            for (ArrayList<String> actual : listOListsCategoria) {
                 opciones2.add(actual.get(1));
                 System.out.println("*********" + actual.get(0) + ":::" + actual.get(1) + "***********");
             }
@@ -86,7 +87,7 @@ public class MovimientoManual extends AppCompatActivity {
             ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones2);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             c.setAdapter(adapter2);
-
+            c.setSelection(0);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -104,13 +105,14 @@ public class MovimientoManual extends AppCompatActivity {
         Spinner metodo = (Spinner) findViewById(R.id.Desplegable_Metodo_Pago);
         Spinner categoria = (Spinner) findViewById(R.id.desplegable_Categoria);
 
-        if((!egreso.isChecked() && !ingreso.isChecked()) || fecha.getText().toString().isEmpty() || valor.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty()){
+        if ((!egreso.isChecked() && !ingreso.isChecked()) || fecha.getText().toString().isEmpty() ||
+                valor.getText().toString().isEmpty() || descripcion.getText().toString().isEmpty() ||
+                metodo.getSelectedItemPosition() == 0 || categoria.getSelectedItemPosition() == 0) {
             CrearCuenta.Alerta(view.getContext(), "Error al agregar movimiento", "\n+ Existen parametros sin llenar");
-        }
-        else{
+        } else {
             tempMovimiento.setValue(Integer.parseInt(valor.getText().toString()));
-            if(egreso.isChecked())
-                tempMovimiento.setValue(tempMovimiento.getValue()*(-1));
+            if (egreso.isChecked())
+                tempMovimiento.setValue(tempMovimiento.getValue() * (-1));
 
             Date date = null;
             String fechaS = String.valueOf(fecha.getText());
@@ -118,16 +120,16 @@ public class MovimientoManual extends AppCompatActivity {
             tempMovimiento.setFecha_Movimiento(date);
 
             String metodoS = String.valueOf(metodo.getSelectedItem().toString());
-            for(ArrayList<String> actual : listOListsMetodos_Pago){
-                if(actual.get(1).contains(metodoS)){
+            for (ArrayList<String> actual : listOListsMetodos_Pago) {
+                if (actual.get(1).contains(metodoS)) {
                     tempMovimiento.setIdMetodo_pago(Integer.parseInt(actual.get(0)));
                     break;
                 }
             }
 
             String categoriaS = String.valueOf(categoria.getSelectedItem().toString());
-            for(ArrayList<String> actual : listOListsCategoria){
-                if(actual.get(1).contains(categoriaS)){
+            for (ArrayList<String> actual : listOListsCategoria) {
+                if (actual.get(1).contains(categoriaS)) {
                     tempMovimiento.setIdCategoria(Integer.parseInt(actual.get(0)));
                     break;
                 }
@@ -140,28 +142,27 @@ public class MovimientoManual extends AppCompatActivity {
             Random random = new Random();
             tempMovimiento.setIdMovimiento(random.nextInt(99999999));
 
-            if(Utils.enviarPost(tempMovimiento, "https://striped-weaver-309814.ue.r.appspot.com/movimientoST")){
+            if (Utils.enviarPost(tempMovimiento, "https://striped-weaver-309814.ue.r.appspot.com/movimientoST")) {
                 Toast.makeText(view.getContext(), "Movimiento agregado correctamente",
                         Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(view.getContext(), Finanzas.class);
                 view.getContext().startActivity(i);
-            }
-            else{
+            } else {
                 CrearCuenta.Alerta(view.getContext(), "Error al añadir movimiento", "\nPor favor intente más tarde");
             }
         }
     }
 
-    public void checkIngreso(View view){
+    public void checkIngreso(View view) {
         CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEgresos);
-        if(egreso.isChecked()){
+        if (egreso.isChecked()) {
             egreso.setChecked(false);
         }
     }
 
-    public void checkEgreso(View view){
+    public void checkEgreso(View view) {
         CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIngreso);
-        if(ingreso.isChecked()){
+        if (ingreso.isChecked()) {
             ingreso.setChecked(false);
         }
 
@@ -178,7 +179,7 @@ public class MovimientoManual extends AppCompatActivity {
                     listOListsCategoria = new ArrayList<>();
                     StringBuilder resultado = new StringBuilder();
 
-                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/CategoriaGet?catG=" + Utils.getUser().getEmail() ;
+                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/CategoriaGet?catG=" + Utils.getUser().getEmail();
                     URL url = new URL(tempURL);
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -195,15 +196,14 @@ public class MovimientoManual extends AppCompatActivity {
                     // Cerrar el BufferedReader
                     rd.close();
 
-                    Type collectionType = new TypeToken<Collection<ArrayList>>(){}.getType();
+                    Type collectionType = new TypeToken<Collection<ArrayList>>() {
+                    }.getType();
                     Collection<ArrayList> CollectionString = gson.fromJson(java.lang.String.valueOf(resultado), collectionType);
 
                     //CollectionString guarda todos los valores de un lista, dentro de otra lista
 
-                    if( CollectionString.isEmpty() == false )
-                    {
-                        for (ArrayList Temp : CollectionString)
-                        {
+                    if (CollectionString.isEmpty() == false) {
+                        for (ArrayList Temp : CollectionString) {
                             resultadosCategoria = new ArrayList<>();
                             //el primer parametro es quien deberia guardar el ID del metodo de pago
                             String ID_categoria = (String) Temp.get(0);
@@ -214,7 +214,7 @@ public class MovimientoManual extends AppCompatActivity {
                             resultadosCategoria.add(nombre_categoria);
                             listOListsCategoria.add(resultadosCategoria);
 
-                            System.out.println("---lectura primer parametro:___" +ID_categoria+ "___segundo parametro___" + nombre_categoria +"\n" );
+                            System.out.println("---lectura primer parametro:___" + ID_categoria + "___segundo parametro___" + nombre_categoria + "\n");
                         }
                     }
 
@@ -240,7 +240,7 @@ public class MovimientoManual extends AppCompatActivity {
                     listOListsMetodos_Pago = new ArrayList<>();
                     StringBuilder resultado = new StringBuilder();
 
-                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + Utils.getUser().getEmail() ;
+                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/Metodo_De_Pago?HolaE=" + Utils.getUser().getEmail();
                     URL url = new URL(tempURL);
 
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -257,26 +257,25 @@ public class MovimientoManual extends AppCompatActivity {
                     // Cerrar el BufferedReader
                     rd.close();
 
-                    Type collectionType = new TypeToken<Collection<ArrayList>>(){}.getType();
+                    Type collectionType = new TypeToken<Collection<ArrayList>>() {
+                    }.getType();
                     Collection<ArrayList> CollectionString = gson.fromJson(java.lang.String.valueOf(resultado), collectionType);
 
                     //CollectionString guarda todos los valores de un lista, dentro de otra lista
 
-                    if( CollectionString.isEmpty() == false )
-                    {
-                        for (ArrayList Temp : CollectionString)
-                        {
+                    if (CollectionString.isEmpty() == false) {
+                        for (ArrayList Temp : CollectionString) {
                             resultadosMetodos_Pago = new ArrayList<>();
                             //el primer parametro es quien deberia guardar el ID del metodo de pago
                             String MP_id = (String) Temp.get(0);
-                            String MP_Codigo = (String) Temp.get(1);
+                            String nombreMP = (String) Temp.get(1);
 
                             //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
                             resultadosMetodos_Pago.add(MP_id);
-                            resultadosMetodos_Pago.add(MP_Codigo);
+                            resultadosMetodos_Pago.add(nombreMP);
                             listOListsMetodos_Pago.add(resultadosMetodos_Pago);
 
-                            System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_Codigo +"\n" );
+                            System.out.println("---lectura primer parametro:___" + MP_id + "___segundo parametro___" + nombreMP + "\n");
                         }
                     }
 
@@ -295,7 +294,7 @@ public class MovimientoManual extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 // +1 because January is zero
-                final String selectedDate = day + "/" + (month+1) + "/" + year;
+                final String selectedDate = day + "/" + (month + 1) + "/" + year;
 
 
                 EditText fecha_seleccionada = (EditText) findViewById(R.id.fechaEntradaManual);
