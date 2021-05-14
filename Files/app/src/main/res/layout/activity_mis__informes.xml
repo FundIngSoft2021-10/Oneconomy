@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="src.Controler.Mis_Informes">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart_x"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="364dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
