@@ -72,6 +72,7 @@
         android:layout_marginEnd="32dp"
         android:orientation="vertical"
         android:spinnerMode="dropdown"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/crearctxt3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
@@ -180,8 +181,8 @@
 
     <ImageView
         android:id="@+id/logo4"
-        android:layout_width="446dp"
-        android:layout_height="365dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"

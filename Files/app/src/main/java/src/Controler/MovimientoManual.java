@@ -268,14 +268,14 @@ public class MovimientoManual extends AppCompatActivity {
                             resultadosMetodos_Pago = new ArrayList<>();
                             //el primer parametro es quien deberia guardar el ID del metodo de pago
                             String MP_id = (String) Temp.get(0);
-                            String nombreMP = (String) Temp.get(1);
+                            String MP_nombre = (String) Temp.get(1);
 
                             //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
                             resultadosMetodos_Pago.add(MP_id);
-                            resultadosMetodos_Pago.add(nombreMP);
+                            resultadosMetodos_Pago.add(MP_nombre);
                             listOListsMetodos_Pago.add(resultadosMetodos_Pago);
 
-                            System.out.println("---lectura primer parametro:___" + MP_id + "___segundo parametro___" + nombreMP + "\n");
+                            System.out.println("---lectura primer parametro:___" +MP_id+ "___segundo parametro___" + MP_nombre +"\n" );
                         }
                     }
 
