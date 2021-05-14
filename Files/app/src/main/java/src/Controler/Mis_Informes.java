@@ -26,4 +26,4 @@ public class Mis_Informes extends AppCompatActivity {
         }
 
         //aqui iria la funcion del llamado get a movimientos en el servidor
-    }git add F
+    }
