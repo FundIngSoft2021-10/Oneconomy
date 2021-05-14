@@ -33,7 +33,7 @@
         android:editable="false"
         android:ellipsize="start"
         android:ems="10"
-        android:hint="Nombre_usuario"
+        android:hint="Usuario"
         android:inputType="textPersonName"
         android:textIsSelectable="false"
         android:textSize="24sp"

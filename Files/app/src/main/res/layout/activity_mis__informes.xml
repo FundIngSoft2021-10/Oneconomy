@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="src.Controler.Mis_Informes">
 
+<<<<<<< HEAD
     <Button
         android:id="@+id/verInformeMes"
         android:layout_width="0dp"
@@ -100,4 +101,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imagen" />
 
+=======
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/piechart_x"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="364dp" />
+>>>>>>> db616cc744e5bf168b8b595b9a2e7e690d27ba72
 </androidx.constraintlayout.widget.ConstraintLayout>
