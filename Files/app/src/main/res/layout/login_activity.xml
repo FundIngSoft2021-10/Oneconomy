@@ -50,6 +50,7 @@
 
     <Button
         android:id="@+id/buttonLogin"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,6 +59,7 @@
         android:backgroundTint="#03A9F4"
         android:onClick="Prueba"
         android:text="Login"
+
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

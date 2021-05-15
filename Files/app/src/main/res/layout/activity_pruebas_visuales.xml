@@ -6,37 +6,37 @@
     android:layout_height="match_parent"
     tools:context="src.Controler.Pruebas_visuales">
 
-    <ScrollView
-        android:layout_width="260dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="60dp"
-        tools:layout_editor_absoluteY="85dp">
+        tools:layout_editor_absoluteX="318dp"
+        tools:layout_editor_absoluteY="217dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:srcCompat="@tools:sample/avatars" />
+        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
