@@ -4,32 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:flow_horizontalStyle="spread"
     tools:context="src.Controler.Graficas.MisGraficas">
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_compass"
-        tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="126dp" />
+        android:id="@+id/graficaBarras"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="332dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graficaPastel"
+        app:srcCompat="@drawable/grafico_de_barras" />
 
     <ImageButton
         android:id="@+id/graficaPastel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.ImageButton"
+        android:layout_width="321dp"
+        android:layout_height="303dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:backgroundTint="#00FFFFFF"
+        android:onClick="graficaPastel"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="graficaPastel"
-        app:srcCompat="@android:drawable/ic_menu_compass" />
+        app:layout_constraintVertical_bias="0.48"
+        app:srcCompat="@drawable/grafico_circular" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_compass"
-        tools:layout_editor_absoluteX="178dp"
-        tools:layout_editor_absoluteY="497dp" />
+        android:id="@+id/graficaLineal"
+        android:layout_width="329dp"
+        android:layout_height="295dp"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/graficaPastel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/grafico_de_lineas" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
