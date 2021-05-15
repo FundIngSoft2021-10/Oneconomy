@@ -9,12 +9,12 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="204dp"
-        android:layout_height="148dp"
+        android:layout_width="274dp"
+        android:layout_height="116dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imagen" />
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"
-        android:text="Mis Informes"
+        android:text="Mis Graficas"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,24 +33,23 @@
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"
         android:layout_width="0dp"
-        android:layout_height="960dp"
+        android:layout_height="950dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
-        app:constraint_referenced_ids="graficaPastel,graficaBarras,graficaLineal"
+        app:constraint_referenced_ids="graficaBarras,graficaPastel,graficaLineal"
         app:flow_horizontalAlign="center"
         app:flow_lastVerticalStyle="spread_inside"
         app:flow_verticalAlign="center"
-        app:flow_verticalStyle="spread_inside"
+        app:flow_verticalStyle="packed"
         app:flow_wrapMode="chain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:layout_constraintVertical_bias="1" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <ImageButton
         android:id="@+id/graficaPastel"
@@ -75,6 +74,8 @@
         android:layout_height="0dp"
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitXY"
+        android:scaleX=".8"
+        android:scaleY=".8"
         app:layout_constraintBottom_toTopOf="@+id/graficaLineal"
         app:layout_constraintEnd_toEndOf="@+id/graficaPastel"
         app:layout_constraintStart_toStartOf="@+id/graficaPastel"
