@@ -18,20 +18,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 
+import src.Controler.Mis_Informes;
+import src.Libraries.Utils;
+
 public class GraficaPastel extends AppCompatActivity {
 
-
+    //Lista de categorias con sus respectivos totales: 0=nombre, 1=Ingresos, 2=Egresos
+    private static ArrayList<ArrayList<String>> listOfListsCategorias;
     private PieChart pieChart;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grafica_pastel);
         pieChart = findViewById(R.id.piechart_x);
         setUp();
-        cargarDatos();
+        try {
+            cargarDatos();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
     private void setUp(){
         pieChart.setDrawHoleEnabled(true);
@@ -47,11 +55,17 @@ public class GraficaPastel extends AppCompatActivity {
         l.setEnabled(true);
     }
 
-    private void cargarDatos() {
+
+
+    private void cargarDatos() throws InterruptedException {
         ArrayList<PieEntry> entradas = new ArrayList<>();
-        entradas.add(new PieEntry(0.2f, "Bancos"));
-        entradas.add(new PieEntry(0.9f, "Entretenimiento"));
-        entradas.add(new PieEntry(0.1f, "Educacion"));
+        listOfListsCategorias = src.Libraries.Utils.analisisDatos();
+
+        //For que recorre la lista agregando los valores dependiendo si es ingreso o egreso
+
+        //entradas.add(new PieEntry(cont, categoriaActual.get(1)));
+
+
         ArrayList<Integer> colores = new ArrayList<>();
         for (int c : ColorTemplate.MATERIAL_COLORS) {
             colores.add(c);

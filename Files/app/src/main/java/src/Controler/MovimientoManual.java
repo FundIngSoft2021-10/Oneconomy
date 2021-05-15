@@ -41,14 +41,9 @@ import src.Model.Movimiento;
 public class MovimientoManual extends AppCompatActivity {
 
     private static Gson gson = new Gson();
-    private static boolean estado = false;
-    private static MensajeGenerico mensajeGenerico;
-    private static Cliente cliente;
-    private static Campos campos;
     private static ArrayList<String> resultadosMetodos_Pago;
-    private static ArrayList<String> resultadosCategoria;
     private static ArrayList<ArrayList<String>> listOListsMetodos_Pago = new ArrayList<>();
-    private static ArrayList<ArrayList<String>> listOListsCategoria = new ArrayList<>();
+
 
 
     @Override
@@ -79,7 +74,7 @@ public class MovimientoManual extends AppCompatActivity {
             Spinner c = (Spinner) findViewById(R.id.desplegable_Categoria);
             ArrayList<String> opciones2 = new ArrayList<>();
             opciones2.add(" ---- ");
-            for (ArrayList<String> actual : listOListsCategoria) {
+            for (ArrayList<String> actual : src.Libraries.Utils.getListOListsCategoria()) {
                 opciones2.add(actual.get(1));
                 System.out.println("*********" + actual.get(0) + ":::" + actual.get(1) + "***********");
             }
@@ -92,6 +87,10 @@ public class MovimientoManual extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void recibirGET_Categoria() throws InterruptedException{
+        src.Libraries.Utils.recibirGET_Categoria();
     }
 
     public void crearMovimientoManual(View view) throws ParseException, InterruptedException {
@@ -128,7 +127,7 @@ public class MovimientoManual extends AppCompatActivity {
             }
 
             String categoriaS = String.valueOf(categoria.getSelectedItem().toString());
-            for (ArrayList<String> actual : listOListsCategoria) {
+            for (ArrayList<String> actual : src.Libraries.Utils.getListOListsCategoria()) {
                 if (actual.get(1).contains(categoriaS)) {
                     tempMovimiento.setIdCategoria(Integer.parseInt(actual.get(0)));
                     break;
@@ -166,67 +165,6 @@ public class MovimientoManual extends AppCompatActivity {
             ingreso.setChecked(false);
         }
 
-    }
-
-    public static void recibirGET_Categoria() throws InterruptedException {
-
-        Thread thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    resultadosCategoria = new ArrayList<>();
-                    listOListsCategoria = new ArrayList<>();
-                    StringBuilder resultado = new StringBuilder();
-
-                    String tempURL = "https://striped-weaver-309814.ue.r.appspot.com/CategoriaGet?catG=" + Utils.getUser().getEmail();
-                    URL url = new URL(tempURL);
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setRequestMethod("GET");
-
-
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String linea;
-                    // Mientras el BufferedReader se pueda leer, agregar contenido a resultado
-                    while ((linea = rd.readLine()) != null) {
-                        resultado.append(linea);
-                        System.out.println("------------Lectura_recibidatest--------------F" + linea + "___\n");
-                    }
-                    // Cerrar el BufferedReader
-                    rd.close();
-
-                    Type collectionType = new TypeToken<Collection<ArrayList>>() {
-                    }.getType();
-                    Collection<ArrayList> CollectionString = gson.fromJson(java.lang.String.valueOf(resultado), collectionType);
-
-                    //CollectionString guarda todos los valores de un lista, dentro de otra lista
-
-                    if (CollectionString.isEmpty() == false) {
-                        for (ArrayList Temp : CollectionString) {
-                            resultadosCategoria = new ArrayList<>();
-                            //el primer parametro es quien deberia guardar el ID del metodo de pago
-                            String ID_categoria = (String) Temp.get(0);
-                            String nombre_categoria = (String) Temp.get(1);
-
-                            //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
-                            resultadosCategoria.add(ID_categoria);
-                            resultadosCategoria.add(nombre_categoria);
-                            listOListsCategoria.add(resultadosCategoria);
-
-                            System.out.println("---lectura primer parametro:___" + ID_categoria + "___segundo parametro___" + nombre_categoria + "\n");
-                        }
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-
-        });
-        thread.start();
-        thread.join();
     }
 
     public static void recibirGET_MetodoPago() throws InterruptedException {
