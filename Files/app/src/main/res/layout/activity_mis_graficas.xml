@@ -79,6 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/graficaLineal"
         app:layout_constraintEnd_toEndOf="@+id/graficaPastel"
         app:layout_constraintStart_toStartOf="@+id/graficaPastel"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8"
         app:srcCompat="@drawable/grafico_de_barras" />
 
     <ImageButton
