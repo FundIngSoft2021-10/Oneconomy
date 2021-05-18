@@ -47,7 +47,7 @@ public class HistorialMovimientos extends AppCompatActivity {
                         }
                         OkHttpClient client = new OkHttpClient();
                         Request request = new Request.Builder()
-                                .url("http://3.129.204.152:4200/movements/get/"+method.toLowerCase()+"/"+bank.toLowerCase()+"/"+Utils.getUser().getEmail())
+                                .url("http://18.219.21.101:4200/movements/get/"+method.toLowerCase()+"/"+bank.toLowerCase()+"/"+Utils.getUser().getEmail())
                                 .build();
                         try(Response response = client.newCall(request).execute()){
                             setMovements(response.body().string());
@@ -100,10 +100,10 @@ public class HistorialMovimientos extends AppCompatActivity {
                 Spinner dropdownBank = findViewById(R.id.bankSelector);
 
                 Request requestMethods = new Request.Builder()
-                        .url("http://3.129.204.152:4200/movements/get/methods/"+Utils.getUser().getEmail())
+                        .url("http://18.219.21.101:4200/movements/get/methods/"+Utils.getUser().getEmail())
                         .build();
                 Request requestEntities = new Request.Builder()
-                        .url("http://3.129.204.152:4200/movements/get/entities/"+Utils.getUser().getEmail())
+                        .url("http://18.219.21.101:4200/movements/get/entities/"+Utils.getUser().getEmail())
                         .build();
 
                 try {

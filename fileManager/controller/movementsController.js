@@ -83,6 +83,16 @@ router.get('/get/max/:email', (req,res)=>{
     });
 })
 
+router.post('/query',(req,res)=>{
+    dbController.getMovements(req.body.query).then(data => {
+    for (d of data)
+        res.status(200).send({
+            categoria:d.nombre,
+            valor:d.costo
+        })    
+    });
+})
+
 
 function getFecha(date) {
     date = date.toString()
