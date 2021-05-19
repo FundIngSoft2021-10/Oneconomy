@@ -13,6 +13,7 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import src.Model.DatoGrafica;
@@ -83,11 +84,15 @@ public class GraficaBarras extends AppCompatActivity {
         XAxis x = barChartT.getXAxis();
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
+        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
+        x.setLabelCount(xLabel.size());
+        x.setGranularity(1f);
     }
 
     private void cargarDatosPorCategoria(String tipo) throws InterruptedException {
         ArrayList<BarEntry> entradas = new ArrayList<>();
         ArrayList<DatoGrafica> orgData = src.Libraries.Utils.analisisDatos();
+        ArrayList<String> xLabel = new ArrayList<>();
 
         float ing = 0f;
         float egr = 0f;
@@ -97,10 +102,12 @@ public class GraficaBarras extends AppCompatActivity {
             if(tipo.equals("Ingreso")) {
                 if(dato.getIngreso() != 0f){
                     entradas.add(new BarEntry(i, dato.getIngreso()));
+                    xLabel.add(dato.getNombre());
                 }
             }else {
                 if(dato.getEgreso() != 0f){
                     entradas.add(new BarEntry(i, dato.getEgreso()));
+                    xLabel.add(dato.getNombre());
                 }
             }
             i++;
@@ -118,6 +125,12 @@ public class GraficaBarras extends AppCompatActivity {
         data.setValueTextColor(Color.BLACK);
         barChartC.setData(data);
         barChartC.invalidate();
+        XAxis x = barChartC.getXAxis();
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setDrawGridLines(false);
+        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
+        x.setLabelCount(xLabel.size());
+        x.setGranularity(1f);
     }
 
     public void checkIB(View view) {
