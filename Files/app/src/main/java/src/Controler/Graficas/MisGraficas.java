@@ -35,4 +35,14 @@ public class MisGraficas extends AppCompatActivity {
                     ","+actual.get(3)+","+actual.get(4)+","+actual.get(5)+","+actual.get(6)+","+actual.get(7));
         }
     }
+
+    public void graficaBarras(View view) {
+        Intent i = new Intent(this, GraficaBarras.class);
+        startActivity(i);
+    }
+
+    public void graficaLineal(View view) {
+        Intent i = new Intent(this, GraficaLineal.class);
+        startActivity(i);
+    }
 }
