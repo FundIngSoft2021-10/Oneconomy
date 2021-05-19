@@ -16,4 +16,6 @@
 \nEl USUARIO acepta que notificará a Oneconomy cualquiera de las siguientes situaciones: *Pérdida o robo de su cuenta, contraseña y/o número de cuenta. *Uso no autorizado de su código de acceso o contraseña. * Alguna falla, error o hecho inusual, al recibir algún mensaje relacionado con una orden iniciada por el USUARIO a través del sistema electrónico, o que haya sido recibida y/o ejecutada a través del mismo. * La confirmación de alguna orden que el UO no emitió, o alguna imprecisión o desacuerdo en la transmisión de la información.\n
 4. Transmisión de datos – Oneconomy requiere de la transmision de datos del USUARIO a través de Internet, asumiendo que el usuario autoriza a Oneconomy para almacenar y tratar sus datos. Dichos datos serán tratados con altas medidas de confidencialidad.
 \n5. Propiedad de la información – Oneconomy es el titular de los derechos de autor y propiedad intelectual sobre los signos distintivos en general y marcas comerciales, contenidos en estas páginas. Los derechos de autor sobre las páginas, las imágenes y en general todo lo que aparece en pantalla, así como sobre la información y el material contenido en las mismas, es propiedad de Oneconomy salvo indicación en contrario."</string>
+    <string name="movimientos_por_categor_a">Movimientos por Categoría</string>
+    <string name="todo">TODO</string>
 </resources>

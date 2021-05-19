@@ -80,7 +80,7 @@ public class MovimientoManual extends AppCompatActivity {
             }
 
             ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones2);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             c.setAdapter(adapter2);
             c.setSelection(0);
 

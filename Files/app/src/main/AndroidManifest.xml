@@ -16,6 +16,8 @@
         <activity android:name="src.Controler.Graficas.GraficaPastel"></activity>
         <activity android:name="src.Controler.Graficas.MisGraficas" />
         <activity android:name="src.Controler.Mis_Informes" />
+        <activity android:name="src.Controler.InformePorCategoria" />
+        <activity android:name="src.Controler.InformePorMetodo" />
         <activity android:name="src.Controler.Perfil" />
         <activity android:name="src.Controler.AgregarMetodoDePago" />
         <activity android:name="src.Controler.MetodosDePago" />

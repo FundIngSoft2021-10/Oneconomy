@@ -63,10 +63,10 @@ import com.example.oneconomy.R;
         }
 
         public void InformeCategoria(View view) {
-            /*
-            Intent i = new Intent(this, InformeCategoria.class);
+
+            Intent i = new Intent(this, InformePorCategoria.class);
             startActivity(i);
-            */
+
         }
 
         public void InformeMetodoDePago(View view) {
@@ -122,14 +122,14 @@ import com.example.oneconomy.R;
                                 String idExtracto = (String) Temp.get(7);
 
                                 //resultados guarda 2 valores (el ID y el codigo que deberia ser el nombre del metodo de pago) por cada lista que tengo dentro de CollectionString
-                                resultadosMovimiento.add(idMovimiento);
-                                resultadosMovimiento.add(valor);
-                                resultadosMovimiento.add(fecha);
-                                resultadosMovimiento.add(descripcion);
-                                resultadosMovimiento.add(idCategoria);
-                                resultadosMovimiento.add(idMetodoDePago);
-                                resultadosMovimiento.add(email);
-                                resultadosMovimiento.add(idExtracto);
+                                resultadosMovimiento.add(idMovimiento); //0
+                                resultadosMovimiento.add(valor); //1
+                                resultadosMovimiento.add(fecha); //2
+                                resultadosMovimiento.add(descripcion); //3
+                                resultadosMovimiento.add(idCategoria); //4
+                                resultadosMovimiento.add(idMetodoDePago); //5
+                                resultadosMovimiento.add(email); //6
+                                resultadosMovimiento.add(idExtracto); //7
                                 listOListsMovimiento.add(resultadosMovimiento);
                             }
                         }
