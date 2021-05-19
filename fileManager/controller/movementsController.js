@@ -67,6 +67,29 @@ router.get("/get/entities/:email", (req,res) =>{
     });
 });
 
+router.get('/get/max/:email', (req,res)=>{
+    query= `Select sum(m.valor) costo,c.nombre 
+                from Movimiento m
+            inner join Categoria c 
+                on c.idCategoria = m.Categoria_idCategoria 
+            where m.Perfil_email ='${req.params.email}' and m.valor <0
+            group by c.nombre  limit 1`
+    dbController.getMovements(query).then(data => {
+    for (d of data)
+        res.status(200).send({
+            categoria:d.nombre,
+            valor:d.costo
+        })    
+    });
+})
+
+router.post('/query',(req,res)=>{
+    dbController.getMovements(req.body.query).then(data => {
+        res.status(200).send(data)            
+    });
+})
+
+
 function getFecha(date) {
     date = date.toString()
     let month = "01"

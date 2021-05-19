@@ -8,36 +8,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.example.oneconomy.R;
-import com.google.android.gms.security.ProviderInstaller;
-
 import org.apache.commons.io.IOUtils;
-
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Base64;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
-import javax.net.ssl.SSLSocketFactory;
 
 import okhttp3.*;
 import src.Libraries.FireBase.Utils;
@@ -114,7 +95,7 @@ public class Finanzas extends AppCompatActivity {
                 "\"email\":" +
                 "\""+ Utils.getUser().getEmail()+"\"}");
         Request request = new Request.Builder()
-                .url("http://3.129.204.152:4200/pdf/upload")
+                .url("http://18.219.21.101:4200/pdf/upload")
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {

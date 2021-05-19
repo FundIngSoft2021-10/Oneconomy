@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="src.Controler.Graficas.GraficaPastel">
-
+    tools:context="src.Controler.Graficas.GraficaBarras">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,8 +18,8 @@
             android:layout_height="match_parent"
             android:layout_weight=".5"
             android:orientation="vertical">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart_x"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart_x"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="TextView"
@@ -33,31 +32,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart_y"
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart_y"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="TextView"
                 tools:layout_editor_absoluteX="202dp"
                 tools:layout_editor_absoluteY="364dp" />
             <CheckBox
-                android:id="@+id/checkBoxEP"
+                android:id="@+id/checkBoxEB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:checked="false"
-                android:onClick="checkEP"
+                android:onClick="checkEB"
                 android:text="Egreso"/>
 
             <CheckBox
-                android:id="@+id/checkBoxIP"
+                android:id="@+id/checkBoxIB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="0dp"
-                android:layout_below="@id/checkBoxEP"
+                android:layout_below="@id/checkBoxEB"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="32dp"
-                android:onClick="checkIP"
+                android:onClick="checkIB"
                 android:text="Ingreso"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.051"

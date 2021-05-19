@@ -164,7 +164,6 @@ public class MovimientoManual extends AppCompatActivity {
         if (ingreso.isChecked()) {
             ingreso.setChecked(false);
         }
-
     }
 
     public static void recibirGET_MetodoPago() throws InterruptedException {
