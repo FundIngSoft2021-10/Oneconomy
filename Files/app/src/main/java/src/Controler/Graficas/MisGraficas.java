@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import src.Controler.HistorialMovimientos;
 import src.Controler.Mis_Informes;
+import src.Libraries.Utils;
 
 public class MisGraficas extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class MisGraficas extends AppCompatActivity {
     }
 
     public void pruebaLectura() {
-        for (ArrayList<String> actual : Mis_Informes.getListOListsMovimiento()) {
+        for (ArrayList<String> actual : Utils.getListOListsMovimiento()) {
             System.out.println(actual.get(0)+","+actual.get(1)+","+actual.get(2)+
                     ","+actual.get(3)+","+actual.get(4)+","+actual.get(5)+","+actual.get(6)+","+actual.get(7));
         }

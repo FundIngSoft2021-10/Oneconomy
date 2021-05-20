@@ -28,7 +28,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
-        android:text="@string/movimientos_por_categor_a"
+        android:text="@string/movimientos_por_metodo_de_pago"
         android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
