@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="src.Controler.Graficas.GraficaPastel">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,54 +13,81 @@
         tools:layout_editor_absoluteX="167dp"
         tools:layout_editor_absoluteY="269dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".5"
-            android:orientation="vertical">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart_x"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="202dp"
-                tools:layout_editor_absoluteY="364dp" />
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="148dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/textView17"
+            app:srcCompat="@drawable/imagen"/>
 
-        <RelativeLayout
-            android:layout_weight=".5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart_y"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="202dp"
-                tools:layout_editor_absoluteY="364dp" />
-            <CheckBox
-                android:id="@+id/checkBoxEP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:checked="false"
-                android:onClick="checkEP"
-                android:text="Egreso"/>
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Grafica Pastel"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"/>
 
-            <CheckBox
-                android:id="@+id/checkBoxIP"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_below="@id/checkBoxEP"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="32dp"
-                android:onClick="checkIP"
-                android:text="Ingreso"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.051"
-                app:layout_constraintStart_toEndOf="@+id/checkBoxEP" />
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Grafico por categorias"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart_x"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="202dp"
+            tools:layout_editor_absoluteY="364dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Grafico por ingreso/egresos"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart_y"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:text="TextView"
+            tools:layout_editor_absoluteX="202dp"
+            tools:layout_editor_absoluteY="364dp" />
+        <CheckBox
+            android:id="@+id/checkBoxEP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:checked="false"
+            android:onClick="checkEP"
+            android:text="Egreso"/>
+
+        <CheckBox
+            android:id="@+id/checkBoxIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_below="@id/checkBoxEP"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="32dp"
+            android:onClick="checkIP"
+            android:text="Ingreso"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.051"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxEP" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

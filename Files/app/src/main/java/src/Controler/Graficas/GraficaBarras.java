@@ -80,13 +80,16 @@ public class GraficaBarras extends AppCompatActivity {
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
         barChartT.setData(data);
-        barChartT.invalidate();
         XAxis x = barChartT.getXAxis();
+        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
-        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
+        x.setDrawAxisLine(false);
         x.setLabelCount(xLabel.size());
+        x.setTextSize(14f);
         x.setGranularity(1f);
+        barChartT.animateX(2000);
+        barChartT.invalidate();
     }
 
     private void cargarDatosPorCategoria(String tipo) throws InterruptedException {
@@ -124,13 +127,16 @@ public class GraficaBarras extends AppCompatActivity {
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
         barChartC.setData(data);
-        barChartC.invalidate();
         XAxis x = barChartC.getXAxis();
+        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
-        x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
+        x.setDrawAxisLine(false);
         x.setLabelCount(xLabel.size());
+        x.setTextSize(14f);
         x.setGranularity(1f);
+        barChartC.animateX(2000);
+        barChartC.invalidate();
     }
 
     public void checkIB(View view) {
