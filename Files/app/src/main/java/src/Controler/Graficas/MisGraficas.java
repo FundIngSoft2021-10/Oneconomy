@@ -42,8 +42,8 @@ public class MisGraficas extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void graficaLineal(View view) {
-        Intent i = new Intent(this, GraficaLineal.class);
+    public void graficaBarrasH(View view) {
+        Intent i = new Intent(this, GraficaBarrasH.class);
         startActivity(i);
     }
 }

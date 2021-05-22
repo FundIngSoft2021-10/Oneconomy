@@ -1,13 +1,8 @@
 package src.Controler.Graficas;
 
-import android.os.Bundle;
-import android.graphics.Color;
-import android.view.View;
-import android.widget.CheckBox;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.oneconomy.R;
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -15,34 +10,41 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+
 import java.util.ArrayList;
+
 import src.Model.DatoGrafica;
 
-public class GraficaBarras extends AppCompatActivity {
+public class GraficaBarrasH extends AppCompatActivity {
 
-    private BarChart barChartT;
-    private BarChart barChartC;
+    HorizontalBarChart horizontalBarChartT;
+    HorizontalBarChart horizontalBarChartC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grafica_barras);
-        barChartT = findViewById(R.id.barchart_x);
-        barChartC = findViewById(R.id.barchart_y);
+        setContentView(R.layout.activity_grafica_barras_h);
+        horizontalBarChartT = findViewById(R.id.barcharth_x);
+        horizontalBarChartC = findViewById(R.id.barcharth_y);
         CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIB);
         CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEB);
-        setUp(barChartT);
+        setUp(horizontalBarChartT);
         try {
             cargarDatos();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        setUp(barChartC);
+        setUp(horizontalBarChartC);
     }
 
-    private void setUp(BarChart barChart){
-        barChart.setFitBars(true);
-        Legend l = barChart.getLegend();
+    private void setUp(HorizontalBarChart horizontalBarChart){
+        horizontalBarChart.setFitBars(true);
+        Legend l = horizontalBarChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
@@ -79,8 +81,8 @@ public class GraficaBarras extends AppCompatActivity {
         data.setDrawValues(true);
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
-        barChartT.setData(data);
-        XAxis x = barChartT.getXAxis();
+        horizontalBarChartT.setData(data);
+        XAxis x = horizontalBarChartT.getXAxis();
         x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
@@ -88,8 +90,8 @@ public class GraficaBarras extends AppCompatActivity {
         x.setLabelCount(xLabel.size());
         x.setTextSize(14f);
         x.setGranularity(1f);
-        barChartT.animateX(2000);
-        barChartT.invalidate();
+        horizontalBarChartT.animateY(2000);
+        horizontalBarChartT.invalidate();
     }
 
     private void cargarDatosPorCategoria(String tipo) throws InterruptedException {
@@ -126,8 +128,8 @@ public class GraficaBarras extends AppCompatActivity {
         data.setDrawValues(true);
         data.setValueTextSize(12f);
         data.setValueTextColor(Color.BLACK);
-        barChartC.setData(data);
-        XAxis x = barChartC.getXAxis();
+        horizontalBarChartC.setData(data);
+        XAxis x = horizontalBarChartC.getXAxis();
         x.setValueFormatter(new IndexAxisValueFormatter(xLabel));
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
@@ -135,12 +137,12 @@ public class GraficaBarras extends AppCompatActivity {
         x.setLabelCount(xLabel.size());
         x.setTextSize(14f);
         x.setGranularity(1f);
-        barChartC.animateX(2000);
-        barChartC.invalidate();
+        horizontalBarChartC.animateX(2000);
+        horizontalBarChartC.invalidate();
     }
 
-    public void checkIB(View view) {
-        CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEB);
+    public void checkIBH(View view) {
+        CheckBox egreso = (CheckBox) findViewById(R.id.checkBoxEBH);
         if (egreso.isChecked()) {
             egreso.setChecked(false);
         }
@@ -151,8 +153,8 @@ public class GraficaBarras extends AppCompatActivity {
         }
     }
 
-    public void checkEB(View view) {
-        CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIB);
+    public void checkEBH(View view) {
+        CheckBox ingreso = (CheckBox) findViewById(R.id.checkBoxIBH);
         if (ingreso.isChecked()) {
             ingreso.setChecked(false);
         }
@@ -162,4 +164,5 @@ public class GraficaBarras extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 }
