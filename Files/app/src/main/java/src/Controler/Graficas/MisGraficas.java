@@ -10,8 +10,6 @@ import com.example.oneconomy.R;
 
 import java.util.ArrayList;
 
-import src.Controler.HistorialMovimientos;
-import src.Controler.Mis_Informes;
 import src.Libraries.Utils;
 
 public class MisGraficas extends AppCompatActivity {

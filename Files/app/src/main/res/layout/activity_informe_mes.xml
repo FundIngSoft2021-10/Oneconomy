@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="150dp"
-        android:layout_height="22dp"
-        android:text="Este mes has gastado"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="413dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="48dp"
+        android:text="Categoria mas costosa"
+        android:textAlignment="center"
+        android:textColor="#1A56EF"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="31dp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="413dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="36dp"
+        android:text="Un consejo?"
+        android:textAlignment="center"
+        android:textColor="#1A56EF"
+        android:textSize="34sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/costo" />
+
+    <TextView
+        android:id="@+id/categoria"
+        android:layout_width="257dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="32dp"
+        android:background="#00B8E6"
+        android:text="Categoria"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/consejo"
+        android:layout_width="410dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="212dp"
+        android:background="#00B8E6"
+        android:text="Consejo"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/costo"
+        android:layout_width="258dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="112dp"
+        android:background="#00B8E6"
+        android:text="$ 0.00"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria" />
 </androidx.constraintlayout.widget.ConstraintLayout>

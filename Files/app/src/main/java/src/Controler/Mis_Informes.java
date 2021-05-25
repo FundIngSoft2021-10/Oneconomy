@@ -8,15 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.oneconomy.R;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
 
 import src.Controler.Graficas.MisGraficas;
 import src.Libraries.Utils;
@@ -39,10 +30,8 @@ public class Mis_Informes extends AppCompatActivity {
     }
 
     public void InformeMes(View view) {
-            /*
-            Intent i = new Intent(this, InformeMes.class);
-            startActivity(i);
-            */
+        Intent i = new Intent(this, InformsActualMonth.class);
+        startActivity(i);
     }
 
     public void InformeEscrito(View view) {
