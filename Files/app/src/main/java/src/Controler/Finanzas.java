@@ -82,6 +82,11 @@ public class Finanzas extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void CrearCategoria(View view) {
+        Intent i = new Intent(this, CrearCategoria.class);
+        startActivity(i);
+    }
+
     private void sendPost(String name, String value) throws Exception {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);

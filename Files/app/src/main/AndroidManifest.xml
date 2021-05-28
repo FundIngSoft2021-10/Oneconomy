@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Oneconomy">
-        <activity android:name="src.Controler.Graficas.GraficaBarrasH"></activity>
+        <activity android:name="src.Controler.CrearCategoria"></activity>
+        <activity android:name="src.Controler.Graficas.GraficaBarrasH" />
         <activity android:name="src.Controler.Graficas.GraficaBarras" />
         <activity android:name="src.Controler.Graficas.GraficaPastel" />
         <activity android:name="src.Controler.Graficas.MisGraficas" />

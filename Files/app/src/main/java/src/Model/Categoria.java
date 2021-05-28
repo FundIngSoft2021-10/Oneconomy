@@ -7,6 +7,10 @@ public class Categoria {
     String descripcion;
     String perfilEmail = null;
 
+    public Categoria(){
+
+    }
+
     public Categoria(int ID, String nombre, String descripcion) {
         this.ID = ID;
         this.nombre = nombre;
