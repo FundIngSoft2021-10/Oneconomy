@@ -19,4 +19,6 @@
     <string name="movimientos_por_categor_a">Movimientos por Categoría</string>
     <string name="todo">TODO</string>
     <string name="movimientos_por_metodo_de_pago">Movimientos por Metodo de Pago</string>
+    <string name="cargar_movimientos">Cargar movimientos</string>
+    <string name="todos_los_movimientos">Todos los Movimientos</string>
 </resources>

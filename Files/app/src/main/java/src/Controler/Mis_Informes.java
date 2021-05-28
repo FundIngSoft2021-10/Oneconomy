@@ -34,13 +34,6 @@ public class Mis_Informes extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void InformeEscrito(View view) {
-            /*
-            Intent i = new Intent(this, InformeEscrito.class);
-            startActivity(i);
-            */
-    }
-
     public void MisGraficas(View view) {
         Intent i = new Intent(this, MisGraficas.class);
         startActivity(i);

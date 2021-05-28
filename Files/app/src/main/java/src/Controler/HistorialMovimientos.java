@@ -1,155 +1,92 @@
 package src.Controler;
 
-import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
+import android.view.Gravity;
 import android.widget.TableLayout;
-
+import android.widget.TableRow;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.oneconomy.R;
-
-import java.io.IOException;
-import src.Libraries.FireBase.Utils;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import src.Libraries.Utils;
 
 public class HistorialMovimientos extends AppCompatActivity {
+
     private TableLayout tableLayout;
     private String[] header = {"Fecha","Valor","Descripcion"};
-    private ArrayList<String[]> rows= new ArrayList<>();
-    TableDynamic tableDynamic;
-
-
-    private View.OnClickListener generarTabla = new View.OnClickListener() {
-        public void onClick(View v) {
-                Thread thread=new Thread(new Runnable() {
-                    public void run() {
-                        Spinner dropdownMethod = (Spinner)findViewById(R.id.methodSelector);
-                        Spinner dropdownBank = (Spinner)findViewById(R.id.bankSelector);
-
-                        String method = dropdownMethod.getSelectedItem().toString();
-                        String bank = dropdownBank.getSelectedItem().toString();
-
-                        if(method.compareTo("Método pago")==0){
-                            method="all";
-                        }
-                        if(bank.compareTo("Banco")==0){
-                            bank="all";
-                        }
-                        OkHttpClient client = new OkHttpClient();
-                        Request request = new Request.Builder()
-                                .url("http://18.219.21.101:4200/movements/get/"+method.toLowerCase()+"/"+bank.toLowerCase()+"/"+Utils.getUser().getEmail())
-                                .build();
-                        try(Response response = client.newCall(request).execute()){
-                            setMovements(response.body().string());
-                        }catch (Exception e){
-                            System.out.println("ERROR TRAYENDO DATOS DE LA BASE DE DATOS");
-                            System.out.println(e.toString());
-                        }
-                    }
-                });
-                thread.start();
-                try {
-                    thread.join(10000);
-                    if (thread.isAlive()) {
-                        System.out.println("Not finished");
-                    } else {
-                        loadTable();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-        }
-    };
+    private static ArrayList<ArrayList<String>> listOListsMovimiento;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movimientos);
-        Button button = (Button)findViewById(R.id.btnSearch);
-        button.setOnClickListener(generarTabla);
-
-        tableLayout = (TableLayout)findViewById(R.id.tablaMovimientos);
-        tableDynamic = new TableDynamic(tableLayout,getApplicationContext());
-        fillDropdowns(this);
-    }
-
-    private void setMovements(String data) {
-        rows.removeAll(rows);
-        StringTokenizer st = new StringTokenizer(data,"|");
-        while (st.hasMoreTokens()) {
-            String movement=st.nextToken();
-            String[]dataSplited=movement.split(",");
-            rows.add(new String[]{dataSplited[2],dataSplited[1],dataSplited[3].substring(0,12)+"..."});
-        }
-    }
-
-    private void fillDropdowns(HistorialMovimientos ctx){
-        Thread thread=new Thread(new Runnable() {
-            public void run() {
-                OkHttpClient client = new OkHttpClient();
-                Spinner dropdownMethod = findViewById(R.id.methodSelector);
-                Spinner dropdownBank = findViewById(R.id.bankSelector);
-
-                Request requestMethods = new Request.Builder()
-                        .url("http://18.219.21.101:4200/movements/get/methods/"+Utils.getUser().getEmail())
-                        .build();
-                Request requestEntities = new Request.Builder()
-                        .url("http://18.219.21.101:4200/movements/get/entities/"+Utils.getUser().getEmail())
-                        .build();
-
-                try {
-                    Response responseMethods = client.newCall(requestMethods).execute();
-                    Response responseEntities = client.newCall(requestEntities).execute();
-
-                    ArrayList<String> itemsMethod = new ArrayList<>();
-                    ArrayList<String> itemsBank =  new ArrayList<>();
-                    itemsMethod.add("Método pago");
-                    itemsBank.add("Banco");
-
-                    StringTokenizer mt = new StringTokenizer(responseMethods.body().string(),",");
-                    while (mt.hasMoreTokens()) {
-                        itemsMethod.add(mt.nextToken());
-                    }
-
-                    StringTokenizer et = new StringTokenizer(responseEntities.body().string(),",");
-                    while (et.hasMoreTokens()) {
-                        itemsBank.add(et.nextToken());
-                    }
-
-                    String[] itemsMethodFinal = new String[itemsMethod.size()];
-                    String[] itemsBankFinal = new String[itemsBank.size()];
-
-                    itemsMethodFinal=itemsMethod.toArray(itemsMethodFinal);
-                    itemsBankFinal=itemsBank.toArray(itemsBankFinal);
-
-                    ArrayAdapter<String> adapterMethod = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, itemsMethodFinal);
-                    ArrayAdapter<String> adapterBank = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, itemsBankFinal);
-                    dropdownMethod.setAdapter(adapterMethod);
-                    dropdownBank.setAdapter(adapterBank);
-                }catch (Exception e){
-                    System.out.println("ERROR LLENANDO LOS DROPDOWNS");
-                    System.out.println(e.toString());
-                }
-            }
-        });
-        thread.start();
         try {
-            thread.join(1000);
+            Utils.recibirGET_movimientos();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        listOListsMovimiento = Utils.getListOListsMovimiento();
+        tableLayout = (TableLayout)findViewById(R.id.tablaMovimientos);
+        loadTable();
     }
 
     private void loadTable(){
-        tableDynamic.addData(rows,header);
+
+        tableLayout.setColumnShrinkable(0, true);
+        tableLayout.setColumnShrinkable(1, true);
+        tableLayout.setColumnShrinkable(2, true);
+        tableLayout.removeAllViews();
+        int text_size = 20;
+
+        TextView col1 = new TextView(this);
+        col1.setGravity(Gravity.CENTER);
+        col1.setTypeface(null, Typeface.BOLD);
+        TextView col2 = new TextView(this);
+        col2.setGravity(Gravity.CENTER);
+        col2.setTypeface(null, Typeface.BOLD);
+        TextView col3 = new TextView(this);
+        col3.setGravity(Gravity.CENTER);
+        col3.setTypeface(null, Typeface.BOLD);
+
+        TableRow titulos = new TableRow(this);
+        titulos.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        col1.setText(header[0]);
+        col1.setTextSize(text_size);
+        titulos.addView(col1);
+        col2.setText(header[1]);
+        col2.setTextSize(text_size);
+        titulos.addView(col2);
+        col3.setText(header[2]);
+        col3.setTextSize(text_size);
+        titulos.addView(col3);
+        tableLayout.addView(titulos);
+
+        for (int i = 0; i < listOListsMovimiento.size(); i++) {
+                TextView texto1 = new TextView(this);
+                texto1.setGravity(Gravity.CENTER);
+                texto1.setTextSize(text_size);
+                texto1.setSingleLine(false);
+                TextView texto2 = new TextView(this);
+                texto2.setGravity(Gravity.CENTER);
+                texto2.setTextSize(text_size);
+                texto2.setSingleLine(false);
+                TextView texto3 = new TextView(this);
+                texto3.setGravity(Gravity.CENTER);
+                texto3.setTextSize(text_size);
+                texto3.setSingleLine(false);
+                texto3.setMaxWidth(30);
+                TableRow row = new TableRow(this);
+                row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
+                texto1.setText(listOListsMovimiento.get(i).get(2));
+                row.addView(texto1);
+                texto2.setText(listOListsMovimiento.get(i).get(1));
+                row.addView(texto2);
+                texto3.setText(listOListsMovimiento.get(i).get(3));
+                row.addView(texto3);
+                tableLayout.addView(row);
+        }
+
     }
 }
